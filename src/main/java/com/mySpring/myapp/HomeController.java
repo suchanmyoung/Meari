@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -46,11 +47,17 @@ public class HomeController {
 //	public String main(Locale locale, Model model) {
 //		return "main/main";
 //	}
+//	@RequestMapping(value = "main")
+//	public String main(Model model){
+//		model.addAttribute("serverTime", "hhh");
+//		return "home";
+//	}
+
 	@RequestMapping(value = "main", method = RequestMethod.GET)
 	private ModelAndView main(@RequestParam(value = "result", required = false) String result,
 							  HttpServletRequest request, HttpServletResponse response) {
-
 		String viewName = (String) request.getAttribute("viewName");
+		System.out.println(viewName);
 		ModelAndView mav = new ModelAndView();
 
 		mav.setViewName(viewName);
@@ -61,6 +68,7 @@ public class HomeController {
 
 	@RequestMapping(value = "map")
 	private ModelAndView map(HttpServletRequest request, HttpServletResponse response) {
+
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
