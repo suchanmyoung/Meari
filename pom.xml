@@ -89,7 +89,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.29</version>
+			<version>8.0.27</version>
 		</dependency>
 
 		<!--임시 적용 H2 DB -->
@@ -100,12 +100,17 @@
 		</dependency>
 
 		<dependency>
-			<groupId>jdbc.oracle</groupId>
-			<artifactId>OracleDriver</artifactId>
-			<version>12.1.0.2.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
-		</dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>jdbc.oracle</groupId>-->
+<!--			<artifactId>OracleDriver</artifactId>-->
+<!--			<version>12.1.0.2.0</version>-->
+<!--			<scope>system</scope>-->
+<!--			<systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>-->
+<!--		</dependency>-->
 
 
 		<!-- 타일즈 관련 라이브러리 -->
