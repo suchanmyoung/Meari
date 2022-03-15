@@ -22,9 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -41,46 +41,48 @@ public class HomeController {
 //		
 //		return "home";
 //	}
-	
+
 //	@RequestMapping(value = "/home")
 //	public String main(Locale locale, Model model) {
 //		return "main/main";
 //	}
-	@RequestMapping(value = "main", method =  RequestMethod.GET)
-	private ModelAndView main(@RequestParam(value= "result", required=false) String result,
-								HttpServletRequest request, HttpServletResponse response) {
-		
-		String viewName = (String)request.getAttribute("viewName");
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	private ModelAndView main(@RequestParam(value = "result", required = false) String result,
+							  HttpServletRequest request, HttpServletResponse response) {
+
+		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.setViewName(viewName);
 		mav.addObject("result", result);
-		
+
 		return mav;
 	}
-	@RequestMapping(value="map")
+
+	@RequestMapping(value = "map")
 	private ModelAndView map(HttpServletRequest request, HttpServletResponse response) {
-		String viewName = (String)request.getAttribute("viewName");
+		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(viewName);
-		return mav;	
+		return mav;
 	}
-	
-	   @RequestMapping(value = "/chat/test", method =  RequestMethod.GET)
-	   private ModelAndView chat(@RequestParam(value= "username", required=false) String username,
-	                       @RequestParam(value= "roomNum", required=false) String roomNum,
-	                         HttpServletRequest request, 
-	                         HttpServletResponse response) throws Exception {
 
-	      String viewName = (String)request.getAttribute("viewName");
-	      System.out.println(viewName);
-	      //HttpSession session = request.getSession();
-	      //session.setAttribute("action", action);  
-	      ModelAndView mav = new ModelAndView();
-	      mav.addObject("username",username);
-	      mav.addObject("roomNum",roomNum);
-	      mav.setViewName(viewName);
-	      return mav;
-	   }
+	@RequestMapping(value = "/chat/test", method = RequestMethod.GET)
+	private ModelAndView chat(@RequestParam(value = "username", required = false) String username,
+							  @RequestParam(value = "roomNum", required = false) String roomNum,
+							  HttpServletRequest request,
+							  HttpServletResponse response) throws Exception {
+
+		String viewName = (String) request.getAttribute("viewName");
+		System.out.println(viewName);
+		//HttpSession session = request.getSession();
+		//session.setAttribute("action", action);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("username", username);
+		mav.addObject("roomNum", roomNum);
+		mav.setViewName(viewName);
+		return mav;
+	}
+
 	
 }
