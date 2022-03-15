@@ -2,6 +2,7 @@ package com.mySpring.myapp;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -57,7 +58,6 @@ public class HomeController {
 	private ModelAndView main(@RequestParam(value = "result", required = false) String result,
 							  HttpServletRequest request, HttpServletResponse response) {
 		String viewName = (String) request.getAttribute("viewName");
-		System.out.println(viewName);
 		ModelAndView mav = new ModelAndView();
 
 		mav.setViewName(viewName);
