@@ -355,7 +355,7 @@ public class CommerceController {
 	                     file.createNewFile(); 
 	               }
 	            }
-	            mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\temp\\"+originalFileName)); 
+//	            mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\temp\\"+originalFileName));
 	         }
       		}
 	      

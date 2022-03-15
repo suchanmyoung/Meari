@@ -107,7 +107,7 @@ public class MemberControllerImpl   implements MemberController {
 	                        file.createNewFile(); 
 	                  }
 	               }
-	               mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+imageFileName)); // 엫 떆濡     옣 맂 multipartFile 쓣  떎 젣  뙆 씪濡   쟾 넚
+//	               mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+imageFileName)); // 엫 떆濡     옣 맂 multipartFile 쓣  떎 젣  뙆 씪濡   쟾 넚
 	            }
 	         }
 	         return imageFileName;

@@ -234,7 +234,7 @@ public class SnsControllerImpl  implements SnsController{
                      file.createNewFile(); 
                }
             }
-            mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+"temp"+ "\\"+originalFileName)); // 엫 떆濡     옣 맂 multipartFile 쓣  떎 젣  뙆 씪濡   쟾 넚
+//            mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+"temp"+ "\\"+originalFileName)); // 엫 떆濡     옣 맂 multipartFile 쓣  떎 젣  뙆 씪濡   쟾 넚
          }
       }
       return fileList;
