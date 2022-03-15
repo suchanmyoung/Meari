@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,16 +55,12 @@ public class HomeController {
 //		return "home";
 //	}
 
-	@RequestMapping(value = "main", method = RequestMethod.GET)
-	private ModelAndView main(@RequestParam(value = "result", required = false) String result,
-							  HttpServletRequest request, HttpServletResponse response) {
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-
-		mav.setViewName(viewName);
-		mav.addObject("result", result);
-
-		return mav;
+	@GetMapping(value = "/main")
+	private String main(@RequestParam(value = "result", required = false) String result,
+							  Model model) {
+		model.addAttribute("result", result);
+		System.out.println(result);
+		return "main";
 	}
 
 	@RequestMapping(value = "map")

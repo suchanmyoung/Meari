@@ -23,7 +23,7 @@
     		})
 
     		Toast.fire({
-    		  icon: 'success',
+     		  icon: 'success',
     		  title: '로그인에 성공했습니다.'
     		  
     		})
