@@ -2,14 +2,18 @@ package com.mySpring.myapp.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+@Component
 public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		try {
-			System.out.println(getViewName(request));
+			System.out.println("hihihi");
 			String viewName = getViewName(request);	//getViewName硫붿냼�뱶瑜� �씠�슜�빐 釉뚮씪�슦�� �슂泥�紐낆뿉�꽌 硫붿냼�뱶瑜� 媛��졇�샂
 			request.setAttribute("viewName", viewName);	//request�뿉 諛붿씤�뵫
 		} catch (Exception e) {
@@ -30,6 +34,7 @@ public class ViewNameInterceptor extends HandlerInterceptorAdapter {
 
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
+		System.out.println("hphphp");
 		String uri = (String) request.getAttribute("javax.servlet.include.request_uri");
 		if (uri == null || uri.trim().equals("")) {
 			uri = request.getRequestURI();
