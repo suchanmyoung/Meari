@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.sns">
+<resultMap id="snsResult" type="articleVO">
+    <result property="sns_articleNO" column="sns_articleNO" />
+    <result property="sns_content" column="sns_content" />
+    <result property="member_id" column="member_id" />
+    <result property="sns_writeDate" column="sns_writeDate" />
+  </resultMap> 
+  
+  <resultMap id="imgResult" type="imageVO">
+     <result property="sns_imageFileNO" column="sns_imageFileNO" />
+     <result property="sns_articleNO" column="sns_articleNO" />
+     <result property="sns_imageFileName" column="sns_imageFileName" />
+ </resultMap>
+ 
+   <resultMap id="heartResult" type="HeartVO">
+     <result property="member_id" column="member_id" />
+     <result property="sns_articleNO" column="sns_articleNO" />
+     <result property="sns_heartcnt" column="sns_heartcnt" />
+ </resultMap>
+ 
+   
+  <resultMap id="replyResult" type="replyVO">
+    <result property="sns_replyNO" column="sns_replyNO" />
+    <result property="sns_articleNO" column="sns_articleNO" />
+    <result property="member_id" column="member_id" />
+    <result property="sns_reply" column="sns_reply" />
+  </resultMap> 
+  
+ 
+
+  <select id="selectAllArticlesList" resultMap="snsResult"   >
+    <![CDATA[
+      SELECT sns_articleNO, sns_content, member_id, sns_writeDate  
+     from sns_article
+     ORDER BY sns_articleNO DESC    
+    ]]>
+  </select>
+  
+   <!--단일이미지 추가  -->
+ <!--  
+  <insert id="insertNewArticle"  parameterType="java.util.Map">
+      <![CDATA[
+         INSERT into sns_article(sns_articleNO, sns_title, sns_content, member_id)
+         VALUES(#{sns_articleNO},#{sns_title, jdbcType=VARCHAR}, #{sns_content, jdbcType=VARCHAR}, #{member_id, jdbcType=VARCHAR})
+      ]]>      
+   </insert>
+ -->
+ 
+ 	
+   <select id="selectNewArticleNO" resultType="int"  >
+      <![CDATA[
+         SELECT  max(sns_articleNO)+1 from sns_article     
+      ]]>
+   </select>
+ 
+  <select id="selectArticle" resultType="articleVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from sns_article
+      where sns_articleNO = #{sns_articleNO}      
+    ]]>
+  </select>
+  
+  
+   <!-- 여기받아옴 -->
+    <update id="addHeart" parameterType="int">
+        update sns_article
+        set sns_heart = sns_heart+1
+        where sns_articleNO = #{sns_articleNO}
+   </update>
+   
+       <insert id="addReply"  parameterType="ReplyVO">
+      <![CDATA[
+       insert into reply(sns_replyno, sns_articleno, member_id, sns_reply)
+       values(ex_seq.nextval, #{sns_articleNO}, #{member_id}, #{sns_reply})
+      ]]>      
+   </insert>
+   
+     <select  id="replyList" resultMap="replyResult" parameterType="int">
+    <![CDATA[
+      select member_id, sns_reply
+      from (select sns_replyNO, sns_articleNO, member_id, sns_reply
+       from reply
+       where sns_articleNO = #{sns_articleNO}
+          order by sns_reply desc)
+    ]]>
+   </select>
+   
+   <select id="findHeart" parameterType="int" resultMap="snsResult">
+   		select sns_heart
+   		from sns_article
+ 		where sns_articleNO = #{sns_articleNO}  
+   </select>
+   
+    
+   <delete id="deleteArticleImage"  parameterType="int">
+     <![CDATA[
+        delete from sns_image
+      where sns_articleNO = #{sns_articleNO}
+     ]]>       
+     
+  </delete>
+    
+     <select  id="profileFileList" resultMap="imgResult" parameterType="String">
+    <![CDATA[
+        select sns_imageFileNO, sns_articleNO, sns_imageFileName
+      from(SELECT sns_imageFileNO, sns_article.sns_articleNO, sns_imageFileName, member_id 
+      FROM SNS_IMAGE, sns_article
+      where sns_image.sns_articleno = sns_article.sns_articleno AND member_id = #{member_id}
+      order by sns_imagefileno desc)
+      where rownum < 19
+    ]]>
+  </select> 
+    
+   <delete id="deleteArticle"  parameterType="int">
+     <![CDATA[
+     delete from sns_article
+     where sns_articleNO = #{sns_articleNO}
+     ]]>       
+  </delete>
+
+ 
+ <!--  다중 이미지 추가 SQL문 -->
+
+    <insert id="insertNewArticle"  parameterType="java.util.Map" >
+    <![CDATA[
+     INSERT into sns_article(sns_articleNO, sns_content, member_id)
+         VALUES(#{sns_articleNO}, #{sns_content, jdbcType=VARCHAR}, #{member_id, jdbcType=VARCHAR})
+    ]]>      
+  </insert>
+  
+  <select id="isNullHeart" parameterType="java.util.Map" resultMap="heartResult">
+  <![CDATA[
+  	SELECT sns_heartcnt
+  	from heartcnt
+  	where sns_articleNO=#{sns_articleNO} AND member_id=#{member_id}  
+  ]]>
+  
+  
+  </select>
+
+	<insert id="heartCnt" parameterType="java.util.Map">
+   <![CDATA[
+   INSERT INTO heartCnt(member_id, sns_articleNO, sns_heartcnt)
+   VALUES(#{member_id}, #{sns_articleNO}, '1')
+	]]>
+   </insert>
+	
+	
+	
+	
+	<update id="updateArticle"   parameterType="java.util.Map">
+         update sns_article  
+         set sns_content=#{sns_content}
+         where sns_articleNO = #{sns_articleNO}
+   </update>
+	
+ 
+   <insert id="insertNewImage"  parameterType="java.util.Map">
+    <foreach item="item"  collection="list"   open="INSERT ALL" 
+                  separator=" " close="SELECT * FROM DUAL"
+                   >
+      INTO sns_image(sns_imageFileNO, sns_imageFileName, sns_articleNO)
+      VALUES (#{item.sns_imageFileNO}, #{item.sns_imageFileName, jdbcType=VARCHAR}, #{item.sns_articleNO})
+    </foreach>
+  </insert>
+    
+
+ 
+  <select id="selectNewImageFileNO" resultType="int"  >
+    <![CDATA[
+      SELECT  nvl(max(sns_imageFileNO),0) from sns_image      
+    ]]>
+  </select>
+  
+  <select  id="newImageList" resultMap="imgResult" parameterType="int">
+    <![CDATA[
+      select sns_imageFileNO, sns_articleNO, sns_imageFileName
+		from (select sns_imageFileNO, sns_articleNO, sns_imageFileName
+    	from sns_image
+   		 order by sns_imagefileno desc)
+		where rownum < 19
+    ]]>
+   </select>
+   
+     <select  id="popularImageList" resultMap="imgResult" parameterType="int">
+    <![CDATA[
+   select sns_imagefilename, sns_imagefileno, sns_image.sns_articleno
+        from sns_article, sns_image
+        where sns_article.sns_articleNO=sns_image.sns_articleNO
+        order by sns_heart desc
+    ]]>
+   </select>
+   
+
+  <select  id="selectImageFileList" resultMap="imgResult" parameterType="int">
+    <![CDATA[
+      SELECT sns_imageFileNO, sns_articleNO, sns_imageFileName
+     from sns_image
+     where sns_articleNO = #{sns_articleNO}
+    ORDER BY sns_articleNO DESC  
+    ]]>
+  </select> 
+  
+</mapper>

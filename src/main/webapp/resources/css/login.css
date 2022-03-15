@@ -1,0 +1,317 @@
+/* Ŭ    ư */
+body{
+    margin: 0;
+}
+html{
+    padding: 0;
+}
+.backgroundImageContainer{
+    position: fixed;
+    height: 100%;
+    width: auto;
+}
+.backgroundImage{
+    position: fixed;
+    left:0px;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    transition: 1s ease-in-out; 
+}
+
+.backgroundImage.on{
+    left : -100px;
+    
+}
+
+.mobile-menu {
+    position: fixed;
+    bottom: 120px;
+    right: 50px;
+    z-index: 500;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(93, 255, 53);
+    box-shadow: 0px 3px 9px 1px #7e7e7e;
+    transition: 0.3s ease-in-out; 
+
+    border: 0;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.mobile-menu.on {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ȭ  ǥ */
+.point{
+    position: relative;
+    width: 23px;
+    height: auto;
+    top:1px;
+}
+
+
+
+.triangle {
+    width:0; 
+    height:0; 
+    z-index: 700;
+} 
+
+/*   Ÿ     div,    ϱ     */
+.menuwrap {
+    /*  ִϸ  ̼  ȿ   */
+    transition: 1s ease-in-out; 
+
+    /* opacity: 0; */
+    position:fixed;
+    top : 50%;
+    left : 50%;
+    transform: translate(25%, -50%);
+
+    background-color: gray;
+
+    z-index: 400;
+    overflow: auto;
+    width: 80%; /*  ʺ  */
+    height: 65%;
+
+    padding: 50px 20px 0px 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0);
+    
+}
+
+/*           ? */
+.menuwrap.on {
+    /*  θ          ߽  ̵  ϱ  */
+    position:fixed;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.5);   
+}
+
+.allContainer{
+    margin : 0px 20px 0px 20px;
+}
+
+.contentsContainer{
+    position: fixed;
+    bottom: 110px;
+}
+
+.barBackground{
+    position: fixed;
+   
+    margin : auto;
+    bottom: 50px;
+    width: 90%;
+    height: 5px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.5;
+}
+
+.bar{
+    bottom: 50px;
+    position: fixed;
+    width: 45%;
+    height: 5px;
+    background-color: white;
+    transition: 1s ease-in-out; 
+    z-index: 600;
+}
+
+.bar.on{
+    transform: translate(100%, 0%);
+}
+
+.wellcomMention{
+    color: white;
+    opacity: 1;
+    transition: 0.3s ease-in-out; 
+}
+.wellcomMention.on{
+    opacity: 0;
+}
+.mainMention{
+    font-size: 40px;
+}
+.subMention{
+    margin-top: 20px;
+    word-spacing: 3px;
+    font-size: 16px;
+}
+/*       Ʈ */
+p {font-family: "Montserrat", sans-serif; letter-spacing: -2px; }  
+.thin {font-weight: 100;}
+.regular {font-weight: 400;}
+.medium {font-weight: 500;}
+.bold {font-weight: 700;}
+
+#dimmed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+
+
+
+/*      css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Noto Sans KR", sans-serif;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  .logoimage{
+      height: 10px;
+      width: auto;
+  }
+
+  
+  /*  α    input  ڽ  */
+  .login {
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  /*  ΰ  */
+  .logo img {
+      max-width: 100px;
+      height: auto;
+}
+/* SNS  α    */
+  .login_sns {
+    padding: 20px;
+    display: flex;
+  }
+
+  .login_sns li {
+    padding: 0px 15px;
+  }
+  
+  .login_sns a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50px;
+    background: white;
+    font-size: 20px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4), -3px -3px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  /*  α     ޼    */
+  .loginMessege{
+    color:rgb(37, 37, 37);
+    margin-top: 40px;
+    position: relative;
+    word-spacing: 3px;
+    font-size: 13px;
+    right: 38px;
+  }
+/*    ̵   Է  */
+  .login_id {
+    margin-top: -6px;
+    width: 75%;
+  }
+  
+  .login_id input {
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+/*   й ȣ  Է  */
+  .login_pw {
+    /* margin-top: 20px; */
+    width: 75%;
+  }
+  
+  .login_pw input {
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    margin-top: 5px;
+    padding: 0px 20px;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+  /*  α      ư */
+  .submit {
+    margin-top: 30px;
+    width: 75%;
+  }
+  .submit input {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    outline: none;
+    border-radius: 15px;
+    background: #01c73c;
+    color: white;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+  }
+
+/*ã      ȸ      */
+.find-signup-wrap{
+    margin-top: 20px;
+    height: 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+/*ã      ȸ                ϰ   ٲٱ */
+.find-signup-wrap a{
+    color: rgb(37, 37, 37);
+    text-decoration: none;
+    font-weight: 400;
+}
+.find-signup-wrap span{
+    color: rgb(37, 37, 37);
+    font-weight: 400;
+}
+/*   ̵  ã  */
+.find-id{
+    margin: 3px;
+    font-size: 13px;
+    border-right: 1px solid rgb(199, 199, 199);
+}
+/*  й ȣ ã  */
+.find-pw{
+    margin: 3px;
+    font-size: 13px;
+    border-right: 1px solid rgb(199, 199, 199);
+}
+/*ȸ      */
+.sign-up{
+    margin: 3px;
+    font-size: 13px;
+}
+  

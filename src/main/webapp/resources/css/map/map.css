@@ -1,0 +1,71 @@
+
+html { padding: 0px;}
+body { margin : 0px;}
+.label * {display: inline-block;vertical-align: top;}
+.label .left {background: url("https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png") no-repeat;display: inline-block;height: 24px;overflow: hidden;vertical-align: top;width: 7px;}
+.label .center {background: url("https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png") repeat-x;display: inline-block;height: 24px;font-size: 12px;line-height: 24px;}
+.label .right {background: url("https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px 0  no-repeat;display: inline-block;height: 24px;overflow: hidden;width: 6px;}
+
+/* 구글폰트 */
+p {font-family: "Montserrat", sans-serif; letter-spacing: -2px; margin: 0px;}  
+.thin {font-weight: 100;}
+.regular {font-weight: 400;}
+.medium {font-weight: 500;}
+.bold {font-weight: 700;}
+
+.mountainInfoContainer{
+    margin: 5% 5%;
+}
+
+.box1{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.textMountainName{
+    font-size: 28px;
+    margin-right: 5px;
+}
+.textMountainhigh{
+    color: rgb(90, 90, 90);
+}
+.textMountainaddress{
+    color: rgb(90, 90, 90);
+}
+.textDetail{
+    font-size: 20px;
+    color: rgb(90, 90, 90);
+    word-spacing: 1px;
+    line-height: 24px;
+}
+
+.mountainImageContainer{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+
+#mountainimgfile{
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.topmenu-container{
+	position:fixed;
+	top:0;
+	width:100%;
+	height: 80px;
+	z-index: 800;
+}
+
+
+
+input[type=text]{
+    border : 2px solid white;
+    border-bottom : 2px soild green;
+    border-radius : 5px;
+    height: 34px;
+}

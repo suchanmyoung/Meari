@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mountain">
+   <resultMap id="memResult" type="mountainVO">
+      <result property="mountain_name" column="mountain_name" />
+        <result property="mountain_activity" column="mountain_activity" />
+        <result property="mountain_career" column="mountain_career" />
+        <result property="mountain_purpose" column="mountain_purpose" />
+         <result property="mountain_recommend" column="mountain_recommend" />
+        <result property="joinDate" column="joinDate" />
+   </resultMap> 
+
+
+
+    
+  <insert id="insertMountain"  parameterType="mountainVO">
+      <![CDATA[
+       insert into mountain(mountain_name, mountain_activity, mountain_career, mountain_purpose, mountain_recommend)
+       values(#{mountain_name}, #{mountain_activity}, #{mountain_career}, #{mountain_purpose}, #{mountain_recommend})
+      ]]>      
+   </insert>
+   
+</mapper>

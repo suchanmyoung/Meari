@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.commerce">
+
+
+<!-- 전역변수 설정 -->
+<resultMap id="commerceResult" type="commerce_articleVO">
+	<result property="commerce_title" column="commerce_title" />
+	<result property="commerce_content" column="commerce_content" />
+	<result property="commerce_articleNO" column="commerce_articleNO" />
+    <result property="member_id" column="member_id" />
+    <result property="commerce_price" column="commerce_price" />
+  	<result property="commerce_writeDate" column="commerce_writeDate" />  
+  	<result property="commerce_like" column="commerce_like" />
+  	<result property="commerce_thumbnailfilename" column="commerce_thumbnailfilename" />
+  	
+  	
+ </resultMap> 
+  
+    <resultMap id="replyResult" type="commerce_replyVO">
+    <result property="commerce_replyNO" column="commerce_replyNO" />
+    <result property="commerce_articleNO" column="commerce_articleNO" />
+    <result property="member_id" column="member_id" />
+    <result property="commerce_reply" column="commerce_reply" />
+  </resultMap> 
+ 
+  
+  <resultMap id="imgResult" type="commerce_imageVO">
+     <result property="commerce_imageFileNO" column="commerce_imageFileNO" />
+     <result property="commerce_articleNO" column="commerce_articleNO" />
+     <result property="commerce_imageFileName" column="commerce_imageFileName" />
+ </resultMap>
+
+<!-- 전체정보가져오기  -->
+  <select id="selectAllArticlesList" resultMap="commerceResult"   >
+    <![CDATA[
+      SELECT commerce_articleNO, commerce_title, commerce_content, member_id, commerce_writeDate    
+     from commerce_article
+     ORDER BY commerce_articleNO DESC    
+    ]]>
+  </select>
+  
+  
+
+  
+ <!--  *****scrolling*****-->
+ <select id="selecNewArticleListPlus" resultType="commerce_articleVO"   parameterType="int">
+    <![CDATA[
+	SELECT *      
+	FROM  (SELECT *
+	      FROM (SELECT *
+			    FROM commerce_article
+			    ORDER BY commerce_articleNO DESC)
+	      WHERE commerce_articleNO < #{commerce_articleNO}) 
+    WHERE ROWNUM < 6
+    ]]>
+  </select>
+  
+  <!-- 전체정보가져오기 최신순으로 가져오  -->
+   <select id="selecNewArticlesList" resultMap="commerceResult"   >
+   
+    <![CDATA[
+	   	SELECT COMMERCE_ARTICLENO, COMMERCE_TITLE, COMMERCE_CONTENT, COMMERCE_WRITEDATE, MEMBER_ID, COMMERCE_PRICE, COMMERCE_LIKE, COMMERCE_THUMBNAILFILENAME
+	    FROM (SELECT *
+		     from commerce_article
+		     ORDER BY commerce_articleNO DESC)
+		WHERE ROWNUM < 6
+    ]]>
+  </select>
+  
+       <select  id="replyList" resultMap="replyResult" parameterType="int">
+    <![CDATA[
+      select member_id, commerce_reply
+      from (select commerce_replyNO, commerce_articleNO, member_id, commerce_reply
+       from replycommerce
+       where commerce_articleNO = #{commerce_articleNO}
+          order by commerce_reply desc)
+    ]]>
+   </select>
+  
+  <select id="addNewArticleList" resultType="commerce_articleVO"   parameterType="int">
+    <![CDATA[
+	SELECT *      
+	FROM  (SELECT *
+	      FROM (SELECT *
+			    FROM commerce_article
+			    ORDER BY commerce_articleNO DESC)
+	      WHERE commerce_articleNO < #{commerce_articleNO}) 
+    WHERE ROWNUM < 15  
+    ]]>
+  </select>
+  
+    <insert id="addReply"  parameterType="ReplyVO">
+      <![CDATA[
+       insert into replycommerce(commerce_replyno, commerce_articleno, member_id, commerce_reply)
+       values(ex_seq.nextval, #{commerce_articleNO}, #{member_id}, #{commerce_reply})
+      ]]>      
+   </insert>
+  
+   <update id="addHeart" parameterType="int">
+        update commerce_article
+        set commerce_like = commerce_like+1
+        where commerce_articleNO = #{commerce_articleNO}
+   </update>
+ 
+  <select id="findHeart" parameterType="int" resultMap="commerceResult">
+         select commerce_like
+         from commerce_article
+       where commerce_articleNO = #{commerce_articleNO}  
+   </select>
+  
+  
+   <!--단일이미지 추가  -->
+ <!--  
+  <insert id="insertNewArticle"  parameterType="java.util.Map">
+      <![CDATA[
+         INSERT into commerce_article(commerce_articleNO, commerce_title, commerce_content, member_id)
+         VALUES(#{commerce_articleNO},#{commerce_title, jdbcType=VARCHAR}, #{commerce_content, jdbcType=VARCHAR}, #{member_id, jdbcType=VARCHAR})
+      ]]>      
+   </insert>
+ -->
+   
+  <!-- 아티클넘버 가지고 오는애  -->
+   <select id="selectNewArticleNO" resultType="int"  >
+      <![CDATA[
+         SELECT max(commerce_articleNO)+1 from commerce_article     
+      ]]>
+   </select>
+ 
+ 
+ <!-- 선택된 개시글번호 하나 불러오기 -->
+ <!-- resultType을 class이름으로 해주는 건지 애노테이션 이름으로 해주는 건지 모르겠음  -->
+
+  <!-- <select id="selectArticle" resultType="articleVO"   parameterType="int">
+    <![CDATA[
+      SELECT * from commerce_article
+      where commerce_articleNO = #{commerce_articleNO}      
+    ]]>
+  </select> -->
+  
+  
+ <select id="selectArticle" resultType="commerce_articleVO"   parameterType="int">
+    <![CDATA[
+      SELECT commerce_articleNO, member_id, commerce_title,commerce_content, commerce_writeDate, commerce_like, commerce_price
+      from commerce_article
+      where commerce_articleNO = #{commerce_articleNO}      
+    ]]>
+  </select>
+   <select  id="profileFileList" resultMap="imgResult" parameterType="String">
+    <![CDATA[
+        select commerce_imagefileno, commerce_imagefilename, commerce_articleno
+       from ( select commerce_imagefileno, commerce_imagefilename, commerce_image.commerce_articleno
+        from commerce_image, commerce_article
+        where commerce_article.commerce_articleno = commerce_image.commerce_articleno AND member_id = #{member_id}
+        order by commerce_imagefileno desc)
+        where rownum <19
+      
+    ]]>
+  </select> 
+  
+  <!-- 제목 컨텐츠와 파일이름 아티클 넘버를 넣어준다  -->
+  
+ 
+ <!--  다중 이미지 추가 SQL문 -->
+ <!-- 새로운 게시물 등록하기 -->
+    <insert id="insertNewArticle"  parameterType="java.util.Map">
+    <![CDATA[
+     INSERT into commerce_article(commerce_articleNO, commerce_title, commerce_content, commerce_price ,member_id, commerce_like, commerce_thumbnailfilename)
+         VALUES(#{commerce_articleNO}, #{commerce_title, jdbcType=VARCHAR}, #{commerce_content, jdbcType=VARCHAR}, #{commerce_price}, #{member_id, jdbcType=VARCHAR}, #{commerce_like}, #{commerce_thumbnailfilename, jdbcType=VARCHAR})
+    ]]>      
+  </insert>
+
+ <!-- 이미지 등록하기 -->
+   <insert id="insertNewImage"  parameterType="java.util.Map">
+    <foreach item="item"  collection="list"   open="INSERT ALL" 
+                  separator=" " close="SELECT * FROM DUAL"
+                   >
+      INTO commerce_image(commerce_imageFileNO, commerce_imageFileName, commerce_articleNO)
+      VALUES (#{item.commerce_imageFileNO}, #{item.commerce_imageFileName, jdbcType=VARCHAR}, #{item.commerce_articleNO})
+    </foreach>
+  </insert>
+    
+
+ 
+ <!-- 새로운 이미지 파일 넘버를 가지고오기  -->
+ <!-- 혹시 +1을 해줘야하지 않을까? -->
+  <select id="selectNewImageFileNO" resultType="int"  >
+    <![CDATA[
+      SELECT  nvl(max(commerce_imageFileNO),0) from commerce_image      
+    ]]>
+  </select>
+   
+<!-- 전체 이미지파일리스트 가지고 오기  -->
+  <!-- <select  id="selectImageFileList" resultMap="imgResult" parameterType="int">
+    <![CDATA[
+     SELECT commerce_imageFileNO, commerce_articleNO, commerce_imageFileName
+     from commerce_image
+    ORDER BY commerce_articleNO DESC  
+    ]]>
+  </select>  -->
+  
+  
+  <select  id="selectImageFileList" resultMap="imgResult" parameterType="int">
+    <![CDATA[
+     SELECT commerce_imageFileNO, commerce_articleNO, commerce_imageFileName
+     from commerce_image
+     where commerce_articleNO = #{commerce_articleNO}
+    ORDER BY commerce_articleNO DESC  
+    ]]>
+  </select>
+  
+  
+  <update id="updateArticle"  parameterType="java.util.Map">
+         update commerce_article
+         set commerce_content=#{commerce_content}, 
+         commerce_price=#{commerce_price},
+         commerce_title=#{commerce_title} 
+         where commerce_articleNO=#{commerce_articleNO}
+   </update>   
+
+
+   <delete id="deleteArticle"  parameterType="int">
+     <![CDATA[
+     delete from commerce_article
+     where commerce_articleNO = #{commerce_articleNO}
+     ]]>       
+  </delete>
+  
+  <delete id="deleteArticleImage"  parameterType="int">
+     <![CDATA[
+        delete from commerce_image
+      where commerce_articleNO = #{commerce_articleNO}
+     ]]>       
+     
+  </delete>
+  
+  
+  
+</mapper>

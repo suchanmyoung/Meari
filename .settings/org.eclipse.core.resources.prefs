@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/mySpring/myapp/commerce/controller/CommerceController.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/commerce/vo/ArticleVO.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/common/file/FileDownloadController.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/member/controller/MemberControllerImpl.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/sns/controller/SnsControllerImpl.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/sns/service/SnsServiceImpl.java=UTF-8
+encoding//src/main/java/com/mySpring/myapp/sns/vo/ArticleVO.java=UTF-8
+encoding//src/main/webapp/resources/css/login.css=UTF-8
+encoding//src/main/webapp/resources/css/sns/sns_feed.css=UTF-8
+encoding//src/main/webapp/resources/css/sns/sns_new.css=UTF-8
