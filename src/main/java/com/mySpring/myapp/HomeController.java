@@ -57,10 +57,10 @@ public class HomeController {
 
 	@GetMapping(value = "/main")
 	private String main(@RequestParam(value = "result", required = false) String result,
-							  Model model) {
+							  HttpServletRequest request, Model model) {
+		System.out.println(request.getRequestURI());
 		model.addAttribute("result", result);
-		System.out.println(result);
-		return "main";
+		return "/main";
 	}
 
 	@RequestMapping(value = "map")
