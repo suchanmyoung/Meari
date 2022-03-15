@@ -180,6 +180,7 @@
         <!-- 당당산악회 렝킹 -->
         <div class="rank-container">
             <div class="rank">
+                ${testList}
                 <img src="/resources/images/home/rank2.png" class="rank-image" alt="rank-image"></img>
                 <div class="circle2"><img class="logo" src="/resources/images/home/산악회로고2.PNG"></div>
                 <p class="rank1 thin2" style="font-size:10px; margin-top:2px;">나무산악회</p>

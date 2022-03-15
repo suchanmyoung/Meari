@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -26,7 +29,7 @@ public class SnsDAOImpl implements SnsDAO {
 		return sns_articlesList;
 	}
 
-	   @Override
+	  @Override
 	   public List replyList(int sns_articleNO) throws DataAccessException{
 	      List<ReplyVO> sns_replyList = sqlSession.selectList("mapper.sns.replyList", sns_articleNO);
 	      return sns_replyList;

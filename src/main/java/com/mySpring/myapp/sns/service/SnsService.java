@@ -17,7 +17,8 @@ public interface SnsService {
 	
 	 public List<ReplyVO> replyList(int articleNO) throws Exception;
 
-	   
+
+
 	public int addHeart(int artcileNO) throws Exception;
 	
 	public void heartCnt(Map articleMap) throws Exception;

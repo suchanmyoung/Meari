@@ -50,7 +50,12 @@
       ]]>      
    </insert>
  -->
- 
+
+    <select id="selectTest" resultType="string">
+    <![CDATA[
+    select test_data from testdb;
+    ]]>
+    </select>
  	
    <select id="selectNewArticleNO" resultType="int"  >
       <![CDATA[
@@ -132,7 +137,7 @@
          VALUES(#{sns_articleNO}, #{sns_content, jdbcType=VARCHAR}, #{member_id, jdbcType=VARCHAR})
     ]]>      
   </insert>
-  
+    
   <select id="isNullHeart" parameterType="java.util.Map" resultMap="heartResult">
   <![CDATA[
   	SELECT sns_heartcnt

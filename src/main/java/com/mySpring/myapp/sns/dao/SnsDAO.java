@@ -15,7 +15,7 @@ public interface SnsDAO {
 	public void insertNewImage(Map articleMap) throws DataAccessException;
 	public List newImageList() throws DataAccessException;
 	public List popularImageList() throws DataAccessException;
-	
+
 	public int findHeart(int sns_articleNO) throws DataAccessException;
 	
 	public List replyList(int ArticleNO) throws DataAccessException;

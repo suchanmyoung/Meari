@@ -21,7 +21,9 @@ import com.mySpring.myapp.sns.vo.ReplyVO;
 public class SnsServiceImpl  implements SnsService{
 	@Autowired
 	SnsDAO snsDAO;
-	
+
+
+
 	public List<ArticleVO> listArticles() throws Exception{
 		List<ArticleVO> sns_articlesList =  snsDAO.selectAllArticlesList();
         return sns_articlesList;
