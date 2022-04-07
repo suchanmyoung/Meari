@@ -1,34 +1,5 @@
 package com.mySpring.myapp.commerce.controller;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.mySpring.myapp.commerce.service.CommerceService;
 import com.mySpring.myapp.commerce.vo.ArticleVO;
 import com.mySpring.myapp.commerce.vo.ImageVO;
@@ -36,61 +7,37 @@ import com.mySpring.myapp.commerce.vo.ReplyVO;
 import com.mySpring.myapp.member.service.MemberService;
 import com.mySpring.myapp.member.vo.MemberVO;
 import com.mySpring.myapp.member.vo.UserProfileVO;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.*;
 
-@Controller("CommerceController")
+@RequiredArgsConstructor
+@Controller
 public class CommerceController {
-	
-	
-	
-	
-	//console colors//
-	public static final String RESET = "\u001B[0m";    
-	public static final String FONT_BLACK = "\u001B[30m";    
-	public static final String FONT_RED = "\u001B[31m";     
-	public static final String FONT_GREEN = "\u001B[32m";    
-	public static final String FONT_YELLOW = "\u001B[33m";     
-	public static final String FONT_BLUE = "\u001B[34m";   
-	public static final String FONT_PURPLE = "\u001B[35m";     
-	public static final String FONT_CYAN = "\u001B[36m";    
-	public static final String FONT_WHITE = "\u001B[37m";     
-	public static final String BACKGROUND_BLACK = "\u001B[40m";     
-	public static final String BACKGROUND_RED = "\u001B[41m";     
-	public static final String BACKGROUND_GREEN = "\u001B[42m";    
-	public static final String BACKGROUND_YELLOW = "\u001B[43m";     
-	public static final String BACKGROUND_BLUE = "\u001B[44m";    
-	public static final String BACKGROUND_PURPLE = "\u001B[45m";     
-	public static final String BACKGROUND_CYAN = "\u001B[46m";     
-	public static final String BACKGROUND_WHITE = "\u001B[47m";
-		
-		
+
 	//파일 이미지 경로
 	private static final String ARTICLE_IMAGE_REPO = "C:\\upload\\commerce\\article_image";
-	
-	
-	@Autowired
-	private CommerceService commerceService;
-    @Autowired
-    private ArticleVO articleVO;
-    @Autowired
-    private ImageVO imageVO;
-    @Autowired
-    private MemberService memberService;
-	
-	
-    
+
+	private final CommerceService commerceService;
+    private final MemberService memberService;
+
 	private static final Logger logger = LoggerFactory.getLogger(CommerceController.class);
 	
-	
-//	@RequestMapping(value = "commerce")
-//	private ModelAndView commerce(HttpServletRequest request, HttpServletResponse response) {
-//		String viewName = (String)request.getAttribute("viewName");
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName(viewName);
-//		return mav;	
-//	}
-	
-	// 공사중...
 	  @RequestMapping(value="/commerce/addHeart", method = RequestMethod.GET)
       @ResponseBody
       public String addHeart(@RequestParam("articleNO") int articleNO,  

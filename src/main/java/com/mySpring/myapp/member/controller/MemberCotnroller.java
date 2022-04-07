@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,12 +27,11 @@ import com.mySpring.myapp.member.service.MemberService;
 import com.mySpring.myapp.member.vo.MemberVO;
 import com.mySpring.myapp.member.vo.UserProfileVO;
 
-@Controller("memberController")
+@RequiredArgsConstructor
+@Controller
 public class MemberCotnroller {
-	@Autowired
-	private MemberService memberService;
-	@Autowired
-	MemberVO memberVO ;
+
+	private final MemberService memberService;
 	private static final String ARTICLE_IMAGE_REPO = "C:\\upload\\profile\\article_image";
 
 	@RequestMapping(value = "/profile")
@@ -135,10 +135,10 @@ public class MemberCotnroller {
 				              RedirectAttributes rAttr,
 		                       HttpServletRequest request, HttpServletResponse response) throws Exception {
 	ModelAndView mav = new ModelAndView();
-	memberVO = memberService.login(member);
-	if(memberVO != null) {
+	member = memberService.login(member);
+	if(member != null) {
 	    HttpSession session = request.getSession();
-	    session.setAttribute("member", memberVO);
+	    session.setAttribute("member", member);
 	    session.setAttribute("isLogOn", true);
 	    //mav.setViewName("redirect:/member/listMembers.do");
 	    String action = (String)session.getAttribute("action");

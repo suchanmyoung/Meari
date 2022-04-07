@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -33,18 +34,12 @@ import com.mySpring.myapp.sns.vo.ArticleVO;
 import com.mySpring.myapp.sns.vo.ImageVO;
 import com.mySpring.myapp.sns.vo.ReplyVO;
 
-
+@RequiredArgsConstructor
 @Controller
 public class SnsController{
    private static final String ARTICLE_IMAGE_REPO = "C:\\upload\\sns\\article_image";
-   
-   @Autowired
-   private SnsService snsService;
-   @Autowired
-   private ArticleVO articleVO;
-   @Autowired
-   private ImageVO imageVO;
 
+   private final SnsService snsService;
 
    @RequestMapping(value="/comment" ,method =   RequestMethod.POST)
    public ModelAndView comment(@ModelAttribute("reply") ReplyVO reply, HttpServletRequest request, HttpServletResponse response) throws Exception {
