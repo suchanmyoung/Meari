@@ -8,6 +8,7 @@ import com.mySpring.myapp.member.service.MemberService;
 import com.mySpring.myapp.member.vo.MemberVO;
 import com.mySpring.myapp.member.vo.UserProfileVO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.*;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class CommerceController {
@@ -36,8 +38,6 @@ public class CommerceController {
 	private final CommerceService commerceService;
     private final MemberService memberService;
 
-	private static final Logger logger = LoggerFactory.getLogger(CommerceController.class);
-	
 	  @RequestMapping(value="/commerce/addHeart", method = RequestMethod.GET)
       @ResponseBody
       public String addHeart(@RequestParam("articleNO") int articleNO,  

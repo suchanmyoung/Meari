@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -34,6 +35,7 @@ import com.mySpring.myapp.sns.vo.ArticleVO;
 import com.mySpring.myapp.sns.vo.ImageVO;
 import com.mySpring.myapp.sns.vo.ReplyVO;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class SnsController{

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,6 +28,7 @@ import com.mySpring.myapp.member.service.MemberService;
 import com.mySpring.myapp.member.vo.MemberVO;
 import com.mySpring.myapp.member.vo.UserProfileVO;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class MemberCotnroller {
