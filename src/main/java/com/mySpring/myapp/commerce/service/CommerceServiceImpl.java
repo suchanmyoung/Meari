@@ -16,7 +16,7 @@ import com.mySpring.myapp.commerce.vo.ArticleVO;
 import com.mySpring.myapp.commerce.vo.ImageVO;
 import com.mySpring.myapp.commerce.vo.ReplyVO;
 
-@Service("commerceService")
+@Service
 @Transactional(propagation = Propagation.REQUIRED)
 
 public class CommerceServiceImpl implements CommerceService{
@@ -32,9 +32,7 @@ public class CommerceServiceImpl implements CommerceService{
 		     
 		    return commerce_newArticleList;      
 		}
-	
-	@Autowired
-	CommerceController commerceController;
+
 	
 	@Autowired
 	CommerceDAO commerceDAO;

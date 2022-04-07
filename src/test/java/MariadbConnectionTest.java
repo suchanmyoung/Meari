@@ -3,12 +3,10 @@ import org.junit.Test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class MySQLConnectionTest {
+public class MariadbConnectionTest {
 
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-
-    private static final String URL = "jdbc:mysql://meari-db.czrjpw6gk1iv.us-east-1.rds.amazonaws.com:3306/meari" +
-            "?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&autoReconnection=true";
+    private static final String DRIVER = "org.mariadb.jdbc.Driver";
+    private static final String URL = "jdbc:mariadb://meari.czrjpw6gk1iv.us-east-1.rds.amazonaws.com:3306/meari";
     private static final String USER = "admin";
     private static final String PASSWORD = "de741852";
 
