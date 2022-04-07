@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component("commerce_articleVO")
 public class ArticleVO {
 	
-	//데이터베이스에서 받을때 정보 저장..
 	private String commerce_title;
 	private String commerce_content;
 	private String commerce_price;

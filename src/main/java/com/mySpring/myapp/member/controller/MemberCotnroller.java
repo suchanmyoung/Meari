@@ -27,8 +27,7 @@ import com.mySpring.myapp.member.vo.MemberVO;
 import com.mySpring.myapp.member.vo.UserProfileVO;
 
 @Controller("memberController")
-//@EnableAspectJAutoProxy
-public class MemberControllerImpl   implements MemberController {
+public class MemberCotnroller {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -81,9 +80,6 @@ public class MemberControllerImpl   implements MemberController {
 	         String member_id = memberVO.getMember_id();
 	         articleMap.put("member_id", member_id);
 	         articleMap.put("user_imageFileName", user_imageFileName);
-	         System.out.println(articleMap);
-	         System.out.println(articleMap);
-	         System.out.println(articleMap);
 	         
 	      memberService.userProfileUpdate(articleMap);
 	      ModelAndView mav = new ModelAndView();
@@ -107,17 +103,13 @@ public class MemberControllerImpl   implements MemberController {
 	                        file.createNewFile(); 
 	                  }
 	               }
-//	               mFile.transferTo(new File(ARTICLE_IMAGE_REPO +"\\"+imageFileName)); // 엫 떆濡     옣 맂 multipartFile 쓣  떎 젣  뙆 씪濡   쟾 넚
 	            }
 	         }
 	         return imageFileName;
 	      }   
 	   
 	   
-	
-	
-	@Override
-	@RequestMapping(value="/signupForm" ,method = RequestMethod.POST)
+		  @RequestMapping(value="/signupForm" ,method = RequestMethod.POST)
 	public ModelAndView addMember(@ModelAttribute("member") MemberVO member,
 			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
@@ -127,8 +119,7 @@ public class MemberControllerImpl   implements MemberController {
 		return mav;
 	}
 	
-	//濡쒓렇�씤 �빐�빞留� �씠�슜媛��뒫�븳 �꽌鍮꾩뒪�씪�꽌
-	@Override
+
 	@RequestMapping(value = "/logout", method =  RequestMethod.POST)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
@@ -138,19 +129,7 @@ public class MemberControllerImpl   implements MemberController {
 		mav.setViewName("redirect:/loginForm");
 		return mav;
 	}
-	
-	/*
-	@RequestMapping(value = { "/member/loginForm.do", "/member/memberForm.do" }, method =  RequestMethod.GET)
-	@RequestMapping(value = "/member/*Form.do", method =  RequestMethod.GET)
-	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
-	*/
-	
-	@Override
+
 	@RequestMapping(value = "/loginForm", method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("member") MemberVO member,
 				              RedirectAttributes rAttr,
@@ -177,7 +156,6 @@ public class MemberControllerImpl   implements MemberController {
 	return mav;
 	}
 
-	
 
 	@RequestMapping(value = "/*Form", method =  RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
