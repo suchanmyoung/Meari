@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class MariadbConnectionTest {
 
     private static final String DRIVER = "org.mariadb.jdbc.Driver";
-    private static final String URL = "jdbc:mariadb://meari.czrjpw6gk1iv.us-east-1.rds.amazonaws.com:3306/meari";
+    private static final String URL = "jdbc:mariadb://mearidb.chjuel78c8av.ap-northeast-2.rds.amazonaws.com:3306/mearidb";
     private static final String USER = "admin";
     private static final String PASSWORD = "de741852";
 
