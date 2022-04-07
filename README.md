@@ -11,10 +11,10 @@
 * JQuery
 
 ### To-Be
-* JDK 1.8
+* JDK 11
 * SpringBoot
 * MyBatis(undefined)
-* MySQL
+* MariaDB
 * tiles
 * Vue.js(undefined)
 * JUnit5
