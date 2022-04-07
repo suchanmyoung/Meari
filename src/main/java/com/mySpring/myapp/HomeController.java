@@ -21,7 +21,7 @@ public class HomeController {
 
 	private final UserMapper userMapper;
 
-	@GetMapping(value = "/main")
+	@GetMapping(value = "/")
 	private String main(@RequestParam(value = "result", required = false) String result, Model model) throws Exception {
 		userMapper.save("testzzz", "testggg");
 		model.addAttribute("result", result);
