@@ -10,8 +10,6 @@ import com.mySpring.myapp.member.vo.UserProfileVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -173,7 +171,7 @@ public class CommerceController {
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
     
     //ID 변수 선언
-    String id = memberVO.getMember_id();
+    String id = memberVO.getMemberId();
     
     //ID를 추가해준다 
     articleMap.put("member_id",id);
@@ -358,7 +356,7 @@ public class CommerceController {
     List<String> imageFileName= upload(multipartRequest);
     HttpSession session = multipartRequest.getSession();
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
-    String id = memberVO.getMember_id();
+    String id = memberVO.getMemberId();
     articleMap.put("member_id", id);
     articleMap.put("commerce_imageFileName", imageFileName);
     String articleNO= (String) articleMap.get("commerce_articleNO");
@@ -390,7 +388,7 @@ public class CommerceController {
       HttpSession session = request.getSession();
       MemberVO memberVO = (MemberVO)session.getAttribute("member");
       String viewName = (String)request.getAttribute("viewName");
-      String member_id = memberVO.getMember_id();
+      String member_id = memberVO.getMemberId();
       
       Map articleMap = new HashMap();
       List<UserProfileVO> userProfile = memberService.userProfile(member_id);

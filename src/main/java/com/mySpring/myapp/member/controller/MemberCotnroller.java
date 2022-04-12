@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +40,7 @@ public class MemberCotnroller {
 	      HttpSession session = request.getSession();
 	      MemberVO memberVO = (MemberVO)session.getAttribute("member");
 	      String viewName = (String)request.getAttribute("viewName");
-	      String member_id = memberVO.getMember_id();
+	      String member_id = memberVO.getMemberId();
 	      
 	      Map articleMap = new HashMap();
 	      List<UserProfileVO> userProfile = memberService.userProfile(member_id);
@@ -79,7 +78,7 @@ public class MemberCotnroller {
 	          String user_imageFileName= upload(multipartRequest);
 	         HttpSession session = multipartRequest.getSession();
 	         MemberVO memberVO = (MemberVO)session.getAttribute("member");
-	         String member_id = memberVO.getMember_id();
+	         String member_id = memberVO.getMemberId();
 	         articleMap.put("member_id", member_id);
 	         articleMap.put("user_imageFileName", user_imageFileName);
 	         

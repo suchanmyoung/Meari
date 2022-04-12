@@ -13,7 +13,7 @@
 				   <typeAlias type="com.mySpring.myapp.member.vo.UserProfileVO" alias="userProfileVO"/>
 				<typeAlias type="com.mySpring.myapp.commerce.vo.ArticleVO"  alias="commerce_articleVO" />
 			    <typeAlias type="com.mySpring.myapp.sns.vo.ReplyVO" alias="ReplyVO"/>      
-            <typeAlias type="com.mySpring.myapp.commerce.vo.ReplyVO" alias="commerce_replyVO"/>
+            <typeAlias type="com.mySpㅔring.myapp.commerce.vo.ReplyVO" alias="commerce_replyVO"/>
 		<typeAlias type="com.mySpring.myapp.commerce.vo.ImageVO"  alias="commerce_imageVO" />
 	</typeAliases>
 </configuration>

@@ -2,8 +2,13 @@ package com.mySpring.myapp.member.vo;
 
 import org.springframework.stereotype.Component;
 
-@Component("userProfileVO")
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class UserProfileVO {
+
+   @Id
    private String user_profileNO;
    private String user_imageFileName;
    private String user_content;

@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mySpring.myapp.member.vo.MemberVO;
 import com.mySpring.myapp.sns.service.SnsService;
-import com.mySpring.myapp.sns.vo.ArticleVO;
 import com.mySpring.myapp.sns.vo.ImageVO;
 import com.mySpring.myapp.sns.vo.ReplyVO;
 
@@ -93,7 +91,7 @@ public class SnsController{
 		   HttpServletRequest request, HttpServletResponse response) throws Exception{
 	   HttpSession session = request.getSession();
 	   MemberVO memberVO = (MemberVO)session.getAttribute("member");
-	   String id = memberVO.getMember_id();	   
+	   String id = memberVO.getMemberId();
 	   Map articleMap = new HashMap();
 	   articleMap.put("member_id",id);
 	   articleMap.put("sns_articleNO", articleNO);
@@ -147,7 +145,7 @@ public class SnsController{
     
     HttpSession session = multipartRequest.getSession();
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
-    String id = memberVO.getMember_id();
+    String id = memberVO.getMemberId();
     articleMap.put("member_id",id);
     System.out.println(id);
     System.out.println(articleMap);
@@ -249,7 +247,7 @@ public class SnsController{
     List<String> imageFileName= upload(multipartRequest);
     HttpSession session = multipartRequest.getSession();
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
-    String id = memberVO.getMember_id();
+    String id = memberVO.getMemberId();
     articleMap.put("member_id", id);
     articleMap.put("sns_imageFileName", imageFileName);
     String articleNO= (String) articleMap.get("sns_articleNO");
