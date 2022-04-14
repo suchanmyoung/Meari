@@ -1,134 +1,134 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE tiles-definitions PUBLIC
-        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-<tiles-definitions>
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE tiles-definitions PUBLIC-->
+<!--        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"-->
+<!--        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">-->
+<!--<tiles-definitions>-->
 
-   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
-      <put-attribute name="title" value="" />
-      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
-      <put-attribute name="body" value="" />
-      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
-   </definition>
-   
-   <definition name="mapLayout"  template="/WEB-INF/views/common/mapLayout.jsp">
-      <put-attribute name="title" value="" />
-      <put-attribute name="body" value="" />
-      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
-   </definition>
-   
-   <definition name="/mountain" extends="baseLayout">
-      <put-attribute name="title" value="SNS 수정" />
-      <put-attribute name="body" value="/WEB-INF/views/mountain/mountain.jsp" />
-   </definition>
-   
-   <definition name="subLayout"  template="/WEB-INF/views/common/empty.jsp">
-      <put-attribute name="title" value="" />
-      <put-attribute name="body" value="" />
-   </definition>
-   
-   <definition name="/sns/update" extends="baseLayout">
-      <put-attribute name="title" value="SNS 수정" />
-      <put-attribute name="body" value="/WEB-INF/views/sns/sns_update.jsp" />
-   </definition>
-   
-<definition name="/profile/update" extends="baseLayout">
-      <put-attribute name="title" value="커머스목록창" />
-      <put-attribute name="body" value="/WEB-INF/views/profile/update.jsp" />
-   </definition>
-   
-   <definition name="/main" extends="baseLayout">
-      <put-attribute name="title" value="메인페이지" />
-      <put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
-   </definition>
+<!--   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">-->
+<!--      <put-attribute name="title" value="" />-->
+<!--      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />-->
+<!--      <put-attribute name="body" value="" />-->
+<!--      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/commerce" extends="baseLayout">
-      <put-attribute name="title" value="커머스목록창" />
-      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce.jsp" />
-   </definition>
+<!--   <definition name="mapLayout"  template="/WEB-INF/views/common/mapLayout.jsp">-->
+<!--      <put-attribute name="title" value="" />-->
+<!--      <put-attribute name="body" value="" />-->
+<!--      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/commerce/detail" extends="baseLayout">
-      <put-attribute name="title" value="커머스상세페이지" />
-      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce_detail.jsp" />
-   </definition>   
+<!--   <definition name="/mountain" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="SNS 수정" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/mountain/mountain.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/chat/main" extends="baseLayout">
-      <put-attribute name="title" value="채팅창" />
-      <put-attribute name="body" value="/WEB-INF/views/commerce/chat_main.jsp" />
-   </definition>
+<!--   <definition name="subLayout"  template="/WEB-INF/views/common/empty.jsp">-->
+<!--      <put-attribute name="title" value="" />-->
+<!--      <put-attribute name="body" value="" />-->
+<!--   </definition>-->
 
-   <definition name="/chat/room" extends="baseLayout">
-      <put-attribute name="title" value="채팅목록" />
-      <put-attribute name="body" value="/WEB-INF/views/commerce/chat_room.jsp" />
-   </definition>
-   
-   <definition name="/map" extends="mapLayout">
-      <put-attribute name="title" value="채팅목록" />
-      <put-attribute name="body" value="/WEB-INF/views/map/map.jsp" />
-   </definition>
-   
-   <definition name="/commerce/write" extends="baseLayout">
-      <put-attribute name="title" value="커머스작성창" />
-      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce_write.jsp" />
-   </definition>
+<!--   <definition name="/sns/update" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="SNS 수정" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/sns/sns_update.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/loginForm" extends="subLayout">
-      <put-attribute name="title" value="로그인창" />
-      <put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />
-   </definition>
-    
-   <definition name="/profile" extends="baseLayout">
-      <put-attribute name="title" value="프로필창" />
-      <put-attribute name="body" value="/WEB-INF/views/profile/profile.jsp" />
-   </definition>
+<!--<definition name="/profile/update" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="커머스목록창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/profile/update.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/signupForm" extends="subLayout">
-      <put-attribute name="title" value="프로필창" />
-      <put-attribute name="body" value="/WEB-INF/views/signup/signup.jsp" />
-   </definition>
+<!--   <definition name="/main" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="메인페이지" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/sns/feed" extends="baseLayout">
-      <put-attribute name="title" value="SNS피드창" />
-      <put-attribute name="body" value="/WEB-INF/views/sns/sns_feed.jsp" />
-   </definition>
-   
-   
-      
+<!--   <definition name="/commerce" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="커머스목록창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/sns/new" extends="baseLayout">
-      <put-attribute name="title" value="SNS새글창" />
-      <put-attribute name="body" value="/WEB-INF/views/sns/sns_new.jsp" />
-   </definition>
+<!--   <definition name="/commerce/detail" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="커머스상세페이지" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce_detail.jsp" />-->
+<!--   </definition>-->
 
-   <definition name="/sns/popular" extends="baseLayout">
-      <put-attribute name="title" value="SNS인기글" />
-      <put-attribute name="body" value="/WEB-INF/views/sns/sns_popular.jsp" />
-   </definition>
-   
-   <definition name="/sns/result" extends="baseLayout">
-      <put-attribute name="title" value="SNS운동결과" />
-      <put-attribute name="body" value="/WEB-INF/views/sns/sns_result.jsp" />
-   </definition>
-   
-   <definition name="/sns/write" extends="baseLayout">
-      <put-attribute name="title" value="SNS운동결과공유" />
-      <put-attribute name="body" value="/WEB-INF/views/sns/sns_write.jsp" />
-   </definition>
+<!--   <definition name="/chat/main" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="채팅창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/commerce/chat_main.jsp" />-->
+<!--   </definition>-->
 
-	
-	<definition name="/commerce/update" extends="baseLayout">
-	      <put-attribute name="title" value="commerce 수정" />
-	      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce_update.jsp" />
-	   </definition>
-	   
-	     <definition name="/profile/commerce" extends="baseLayout">
-      <put-attribute name="title" value="프로필창" />
-      <put-attribute name="body" value="/WEB-INF/views/profile/profile_commerce.jsp" />
-   </definition>
-   
-     <definition name="/chat/test" extends="baseLayout">
-      <put-attribute name="title" value="테스트" />
-      <put-attribute name="body" value="/WEB-INF/views/chat/chat.jsp" />
-   </definition>
+<!--   <definition name="/chat/room" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="채팅목록" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/commerce/chat_room.jsp" />-->
+<!--   </definition>-->
 
-</tiles-definitions>
+<!--   <definition name="/map" extends="mapLayout">-->
+<!--      <put-attribute name="title" value="채팅목록" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/map/map.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/commerce/write" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="커머스작성창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce_write.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/loginForm" extends="subLayout">-->
+<!--      <put-attribute name="title" value="로그인창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/profile" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="프로필창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/profile/profile.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/signupForm" extends="subLayout">-->
+<!--      <put-attribute name="title" value="프로필창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/signup/signup.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/sns/feed" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="SNS피드창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/sns/sns_feed.jsp" />-->
+<!--   </definition>-->
+
+
+
+
+<!--   <definition name="/sns/new" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="SNS새글창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/sns/sns_new.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/sns/popular" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="SNS인기글" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/sns/sns_popular.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/sns/result" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="SNS운동결과" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/sns/sns_result.jsp" />-->
+<!--   </definition>-->
+
+<!--   <definition name="/sns/write" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="SNS운동결과공유" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/sns/sns_write.jsp" />-->
+<!--   </definition>-->
+
+
+<!--	<definition name="/commerce/update" extends="baseLayout">-->
+<!--	      <put-attribute name="title" value="commerce 수정" />-->
+<!--	      <put-attribute name="body" value="/WEB-INF/views/commerce/commerce_update.jsp" />-->
+<!--	   </definition>-->
+
+<!--	     <definition name="/profile/commerce" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="프로필창" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/profile/profile_commerce.jsp" />-->
+<!--   </definition>-->
+
+<!--     <definition name="/chat/test" extends="baseLayout">-->
+<!--      <put-attribute name="title" value="테스트" />-->
+<!--      <put-attribute name="body" value="/WEB-INF/views/chat/chat.jsp" />-->
+<!--   </definition>-->
+
+<!--</tiles-definitions>-->

@@ -14,10 +14,8 @@ import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +32,22 @@ public class MemberCotnroller {
 
 	private final MemberService memberService;
 	private static final String ARTICLE_IMAGE_REPO = "C:\\upload\\profile\\article_image";
+
+
+	@GetMapping(value = "/signup")
+	public String signUp(){
+		return "signup/signup";
+	}
+
+	@PostMapping(value="/signupForm")
+	public String signUp(MemberVO member, Model model){
+		memberService.addMember(member);
+		log.info("회원가입이 완료 되었습니다." + member.toString());
+		return "redirect:/loginForm";
+	}
+
+
+
 
 	@RequestMapping(value = "/profile")
 	   private ModelAndView profile(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -108,17 +122,7 @@ public class MemberCotnroller {
 	         }
 	         return imageFileName;
 	      }   
-	   
-	   
-		  @RequestMapping(value="/signupForm" ,method = RequestMethod.POST)
-	public ModelAndView addMember(@ModelAttribute("member") MemberVO member,
-			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		int result = 0;
-		result = memberService.addMember(member);
-		ModelAndView mav = new ModelAndView("redirect:/loginForm");
-		return mav;
-	}
+
 	
 
 	@RequestMapping(value = "/logout", method =  RequestMethod.POST)
