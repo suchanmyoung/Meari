@@ -3,7 +3,6 @@ package com.mySpring.myapp.member.vo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +16,7 @@ public class UserProfileVO {
 
    @Id
    @Column(name = "PROFILE_NO")
-   private String profileNO;
+   private String profileNo;
 
    @Column(name = "PROFILE_IMAGE_NAME")
    private String profileImageName;
@@ -29,7 +28,5 @@ public class UserProfileVO {
    private String id;
 
    public UserProfileVO(){
-
    }
-   
 }

@@ -9,14 +9,14 @@
         <result property="member_pw" column="member_pw" />
         <result property="member_name" column="member_name" />
         <result property="member_email" column="member_email" />
-        <result property="joinDate" column="joinDate" />
+        <result property="regDate" column="joinDate" />
 	</resultMap> 
 	
 	 <resultMap id="userProfileResult" type="userProfileVO">
-    <result property="user_profileNO" column="user_profileNO" />
-    <result property="user_imageFileName" column="user_imageFileName" />
-    <result property="user_content" column="user_content" />
-    <result property="member_id" column="member_id" />
+    <result property="profileNo" column="user_profileNO" />
+    <result property="profileImageName" column="user_imageFileName" />
+    <result property="profileContents" column="user_content" />
+    <result property="id" column="member_id" />
   </resultMap> 
 	<!-- 
 	<resultMap id="memResult" type="java.util.HashMap">

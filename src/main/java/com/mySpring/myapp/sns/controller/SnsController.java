@@ -91,7 +91,7 @@ public class SnsController{
 		   HttpServletRequest request, HttpServletResponse response) throws Exception{
 	   HttpSession session = request.getSession();
 	   MemberVO memberVO = (MemberVO)session.getAttribute("member");
-	   String id = memberVO.getMemberId();
+	   String id = memberVO.getId();
 	   Map articleMap = new HashMap();
 	   articleMap.put("member_id",id);
 	   articleMap.put("sns_articleNO", articleNO);
@@ -145,7 +145,7 @@ public class SnsController{
     
     HttpSession session = multipartRequest.getSession();
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
-    String id = memberVO.getMemberId();
+    String id = memberVO.getId();
     articleMap.put("member_id",id);
     System.out.println(id);
     System.out.println(articleMap);
@@ -247,7 +247,7 @@ public class SnsController{
     List<String> imageFileName= upload(multipartRequest);
     HttpSession session = multipartRequest.getSession();
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
-    String id = memberVO.getMemberId();
+    String id = memberVO.getId();
     articleMap.put("member_id", id);
     articleMap.put("sns_imageFileName", imageFileName);
     String articleNO= (String) articleMap.get("sns_articleNO");

@@ -171,7 +171,7 @@ public class CommerceController {
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
     
     //ID 변수 선언
-    String id = memberVO.getMemberId();
+    String id = memberVO.getId();
     
     //ID를 추가해준다 
     articleMap.put("member_id",id);
@@ -356,7 +356,7 @@ public class CommerceController {
     List<String> imageFileName= upload(multipartRequest);
     HttpSession session = multipartRequest.getSession();
     MemberVO memberVO = (MemberVO) session.getAttribute("member");
-    String id = memberVO.getMemberId();
+    String id = memberVO.getId();
     articleMap.put("member_id", id);
     articleMap.put("commerce_imageFileName", imageFileName);
     String articleNO= (String) articleMap.get("commerce_articleNO");
@@ -388,7 +388,7 @@ public class CommerceController {
       HttpSession session = request.getSession();
       MemberVO memberVO = (MemberVO)session.getAttribute("member");
       String viewName = (String)request.getAttribute("viewName");
-      String member_id = memberVO.getMemberId();
+      String member_id = memberVO.getId();
       
       Map articleMap = new HashMap();
       List<UserProfileVO> userProfile = memberService.userProfile(member_id);

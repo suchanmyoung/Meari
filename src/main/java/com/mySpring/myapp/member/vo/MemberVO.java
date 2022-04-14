@@ -1,13 +1,11 @@
 package com.mySpring.myapp.member.vo;
 
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Setter
@@ -30,7 +28,7 @@ public class MemberVO {
 
 	@Column(name = "REGDATE")
 	@Temporal(TemporalType.TIMESTAMP)
-	private LocalDateTime regDate;
+	private Date regDate;
 
 	public MemberVO() {
 
