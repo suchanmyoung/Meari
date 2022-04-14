@@ -1,12 +1,13 @@
 package com.mySpring.myapp.member.vo;
 
+import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Setter
@@ -15,12 +16,21 @@ import java.sql.Date;
 public class MemberVO {
 
 	@Id
-	private String memberId;
-	private String memberPw;
-	private String memberName;
-	private String memberEmail;
-	private String memberPwCorr;
-	private Date joinDate;
+	@Column(name = "ID")
+	private String id;
+
+	@Column(name = "PASSWORD")
+	private String password;
+
+	@Column(name = "NAME")
+	private String name;
+
+	@Column(name = "EMAIL")
+	private String email;
+
+	@Column(name = "REGDATE")
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime regDate;
 
 	public MemberVO() {
 
