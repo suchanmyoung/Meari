@@ -8,16 +8,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.mySpring.myapp.member.vo.MemberVO;
+import com.mySpring.myapp.member.vo.Member;
 import com.mySpring.myapp.member.vo.UserProfileVO;
 import com.mySpring.myapp.sns.vo.ImageVO;
 
+import javax.persistence.*;
 
-@Repository("memberDAO")
+
+@Repository
 public class MemberDAO {
     @Autowired
     private SqlSession sqlSession;
 
+    @PersistenceContext
+    EntityManager em;
+
+    @PersistenceUnit
+    EntityManagerFactory emf;
+
+    EntityTransaction tx = em.getTransaction();
+
+    public void joinMember(Member member) throws DataAccessException {
+        try {
+            em.persist(member);
+            tx.commit();
+        } catch (Exception e) {
+            em.close();
+        }
+    }
 
     public int userProfileUpdate(Map articleMap) throws DataAccessException {
         int articleNO = sqlSession.insert("mapper.member.userProfileUpdate", articleMap);
@@ -29,13 +47,8 @@ public class MemberDAO {
         return userProfile;
     }
 
-    public int insertMember(MemberVO memberVO) throws DataAccessException {
-        int result = sqlSession.insert("mapper.member.insertMember", memberVO);
-        return result;
-    }
-
-    public MemberVO loginById(MemberVO memberVO) throws DataAccessException {
-        MemberVO vo = sqlSession.selectOne("mapper.member.loginById", memberVO);
+    public Member loginById(Member member) throws DataAccessException {
+        Member vo = sqlSession.selectOne("mapper.member.loginById", member);
         return vo;
     }
 

@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.member">
-	<resultMap id="memResult" type="memberVO">
+	<resultMap id="memResult" type="member">
 		<result property="member_id" column="member_id" />
         <result property="member_pw" column="member_pw" />
         <result property="member_name" column="member_name" />
@@ -52,7 +52,7 @@
     ]]>
    </select>
     
-  <insert id="insertMember"  parameterType="memberVO">
+  <insert id="insertMember"  parameterType="member">
 		<![CDATA[
 		 insert into member(member_id, member_pw, member_name, member_email, member_pw_corr)
 		 values(#{member_id}, #{member_pw}, #{member_name}, #{member_email}, #{member_pw_corr})
@@ -60,7 +60,7 @@
 	</insert>
 	
    
-   <update id="updateMember"  parameterType="memberVO">
+   <update id="updateMember"  parameterType="member">
      <![CDATA[
 	     update member
 	     set pw=#{member_pw}, name=#{member_name}, email=#{member_email}
@@ -77,7 +77,7 @@
 	]]>      
   </delete>
   
-  <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
+  <select id="loginById"  resultType="member"   parameterType="member" >
 	<![CDATA[
 		select * from member	
 		where member_id=#{member_id} and member_pw=#{member_pw}		

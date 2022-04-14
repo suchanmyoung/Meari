@@ -6,13 +6,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Setter
 @Getter
 @Entity
-public class MemberVO {
+public class Member {
 
 	@Id
 	@Column(name = "ID")
@@ -30,7 +29,11 @@ public class MemberVO {
 	@Column(name = "REGDATE")
 	private Timestamp regDate;
 
-	public MemberVO() {
-
+	public Member(Member member) {
+		this.id = member.getId();
+		this.password = member.getPassword();
+		this.name = member.getName();
+		this.email = member.getEmail();
+		this.regDate = member.getRegDate();
 	}
 }
