@@ -49,7 +49,7 @@ public class MemberCotnroller {
 
 
 
-	@RequestMapping(value = "/profile")
+	@GetMapping(value = "/profile")
 	   private ModelAndView profile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	      HttpSession session = request.getSession();
 	      Member member = (Member)session.getAttribute("member");
@@ -66,7 +66,7 @@ public class MemberCotnroller {
 	        return mav;
 	         }
 	   
-	      @RequestMapping(value = "/profile/update", method =  RequestMethod.GET)
+	      @GetMapping(value = "/profile/update")
 	      private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	         String viewName = (String)request.getAttribute("viewName");
 	         System.out.println(viewName);
@@ -78,7 +78,7 @@ public class MemberCotnroller {
 	   
 	   
 	   //프로필 업데이트중
-	      @RequestMapping(value="/profile/updating" ,method = RequestMethod.POST)
+	      @PostMapping(value="/profile/updating")
 	      public ModelAndView  updateUserProfile(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception { {
 	         multipartRequest.setCharacterEncoding("utf-8");
 	         Map articleMap = new HashMap();
@@ -125,7 +125,7 @@ public class MemberCotnroller {
 
 	
 
-	@RequestMapping(value = "/logout", method =  RequestMethod.POST)
+	@PostMapping(value = "/logout")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
@@ -135,7 +135,7 @@ public class MemberCotnroller {
 		return mav;
 	}
 
-	@RequestMapping(value = "/loginForm", method = RequestMethod.POST)
+	@PostMapping(value = "/loginForm")
 	public ModelAndView login(@ModelAttribute("member") Member member,
 				              RedirectAttributes rAttr,
 		                       HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -162,7 +162,7 @@ public class MemberCotnroller {
 	}
 
 
-	@RequestMapping(value = "/*Form", method =  RequestMethod.GET)
+	@GetMapping(value = "/*Form")
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
 							  @RequestParam(value= "action", required=false) String action,
 						       HttpServletRequest request, 
