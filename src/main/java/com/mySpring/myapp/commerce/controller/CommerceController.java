@@ -36,7 +36,7 @@ public class CommerceController {
     private final CommerceService commerceService;
     private final MemberService memberService;
 
-    @RequestMapping(value = "/commerce/addHeart", method = RequestMethod.GET)
+    @GetMapping(value = "/commerce/addHeart")
     @ResponseBody
     public String addHeart(@RequestParam("articleNO") int articleNO,
                            HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -48,7 +48,7 @@ public class CommerceController {
         return likecnts;
     }
 
-    @RequestMapping(value = "/commerce/comment", method = RequestMethod.POST)
+    @PostMapping(value = "/commerce/comment")
     public ModelAndView comment(@ModelAttribute("reply") ReplyVO reply, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // TODO Auto-generated method stub
         request.setCharacterEncoding("utf-8");
@@ -61,7 +61,7 @@ public class CommerceController {
 
     //*****scrolling*****
     //for infinite pagination
-    @RequestMapping(value = "/test.action", method = {RequestMethod.POST})
+    @PostMapping(value = "/test.action")
     @ResponseBody
     public List<ArticleVO> test(@RequestParam Long lastArticleId, @RequestParam int size) throws Exception { // Object 대신에 String, list<DTO>, Map<String,Object> 등 .. 도 사용 가능
         System.out.println("****** ArticleId : " + lastArticleId + " / pageSize : " + size + "*****");
@@ -72,7 +72,7 @@ public class CommerceController {
     }
 
 
-    @RequestMapping(value = "/commerce", method = {RequestMethod.GET, RequestMethod.POST})
+    @GetMapping(value = "/commerce")
     public ModelAndView newImageList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //보여줄 viewName가져오기.. /commerce/new
         String viewName = (String) request.getAttribute("viewName");
@@ -90,7 +90,7 @@ public class CommerceController {
 
 
     //commerce detail
-    @RequestMapping(value = "/commerce/detail")
+    @GetMapping(value = "/commerce/detail")
     public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
                                     HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -110,7 +110,7 @@ public class CommerceController {
         return mav;
     }
 
-    @RequestMapping(value = "chat/main")
+    @GetMapping(value = "chat/main")
     private ModelAndView chat_main(HttpServletRequest request, HttpServletResponse response) {
         String viewName = (String) request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView();
@@ -118,7 +118,7 @@ public class CommerceController {
         return mav;
     }
 
-    @RequestMapping(value = "chat/room")
+    @GetMapping(value = "chat/room")
     private ModelAndView chat_room(HttpServletRequest request, HttpServletResponse response) {
         String viewName = (String) request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView();
@@ -126,7 +126,7 @@ public class CommerceController {
         return mav;
     }
 
-    @RequestMapping(value = "commerce/write")
+    @GetMapping(value = "commerce/write")
     private ModelAndView commerce_write(HttpServletRequest request, HttpServletResponse response) {
         String viewName = (String) request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView();
@@ -136,7 +136,7 @@ public class CommerceController {
 
 
     //Multiple Image Upload
-    @RequestMapping(value = "/commercePost", method = RequestMethod.POST)
+    @PostMapping(value = "/commercePost")
     @ResponseBody
     public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
 
@@ -305,7 +305,7 @@ public class CommerceController {
         return fileList;
     }
 
-    @RequestMapping(value = "/commerce/removeArticle", method = RequestMethod.POST)
+    @PostMapping(value = "/commerce/removeArticle")
     @ResponseBody
     public ResponseEntity removeArticle(@RequestParam("articleNO") int articleNO,
                                         HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -336,7 +336,7 @@ public class CommerceController {
     }
 
     /* modArticle  */
-    @RequestMapping(value = "/commerce/updating", method = RequestMethod.POST)
+    @PostMapping(value = "/commerce/updating")
     @ResponseBody
     public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest,
                                      HttpServletResponse response) throws Exception {
@@ -369,7 +369,7 @@ public class CommerceController {
         return resEnt;
     }
 
-    @RequestMapping(value = "/commerce/update", method = RequestMethod.GET)
+    @GetMapping(value = "/commerce/update")
     public ModelAndView updateArticle(@RequestParam("articleNO") int articleNO,
                                       HttpServletRequest request, HttpServletResponse response) throws Exception {
         String viewName = (String) request.getAttribute("viewName");
@@ -380,7 +380,7 @@ public class CommerceController {
         return mav;
     }
 
-    @RequestMapping(value = "/profile/commerce")
+    @GetMapping(value = "/profile/commerce")
     private ModelAndView profile_commerce(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         Member member = (Member) session.getAttribute("member");
