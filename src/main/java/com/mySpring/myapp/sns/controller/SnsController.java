@@ -20,11 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,7 +37,7 @@ public class SnsController{
 
    private final SnsService snsService;
 
-   @RequestMapping(value="/comment" ,method =   RequestMethod.POST)
+   @PostMapping(value="/comment")
    public ModelAndView comment(@ModelAttribute("reply") ReplyVO reply, HttpServletRequest request, HttpServletResponse response) throws Exception {
       // TODO Auto-generated method stub
          request.setCharacterEncoding("utf-8");
@@ -51,7 +47,7 @@ public class SnsController{
          return mav;
       }
    
-   @RequestMapping(value="/sns/new" ,method = {RequestMethod.GET, RequestMethod.POST})
+   @GetMapping(value="/sns/new")
    public ModelAndView newImageList(HttpServletRequest request, HttpServletResponse response) throws Exception{
       String viewName = (String)request.getAttribute("viewName");
       List newImageList = snsService.newImageList();
@@ -61,7 +57,7 @@ public class SnsController{
    }
  
 
-   @RequestMapping(value="/sns/popular" ,method = {RequestMethod.GET, RequestMethod.POST})
+   @GetMapping(value="/sns/popular")
    public ModelAndView popularImageList(HttpServletRequest request, HttpServletResponse response) throws Exception{
       String viewName = (String)request.getAttribute("viewName");
       List popularImageList = snsService.popularImageList();
@@ -70,7 +66,7 @@ public class SnsController{
       return mav;
    }
    
-   @RequestMapping(value="/sns/feed" ,method = RequestMethod.GET)
+   @GetMapping(value="/sns/feed")
    public  ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
            HttpServletRequest request, HttpServletResponse response) throws Exception{
       String viewName = (String)request.getAttribute("viewName");
@@ -85,7 +81,7 @@ public class SnsController{
    }
    
    //여기하는중
-   @RequestMapping(value="/sns/addHeart", method = RequestMethod.GET)
+   @GetMapping(value="/sns/addHeart")
    @ResponseBody
    public String addHeart(@RequestParam("articleNO") int articleNO,  
 		   HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -119,7 +115,7 @@ public class SnsController{
       
 
    //go to sns/write tiles
-   @RequestMapping(value = "/sns/write", method =  RequestMethod.GET)
+   @GetMapping(value = "/sns/write")
    private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
       String viewName = (String)request.getAttribute("viewName");
       System.out.println(viewName);
@@ -129,7 +125,7 @@ public class SnsController{
    }
    
    //Multiple Image
-   @RequestMapping(value="/sns/writing" ,method = RequestMethod.POST)
+   @PostMapping(value="/sns/writing")
    @ResponseBody
    public ResponseEntity  addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
     multipartRequest.setCharacterEncoding("utf-8");
@@ -230,7 +226,7 @@ public class SnsController{
       return fileList;
    }
    
-   @RequestMapping(value="/sns/updating" ,method = RequestMethod.POST)
+   @PostMapping(value="/sns/updating")
    @ResponseBody
    public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest,  
      HttpServletResponse response) throws Exception{
@@ -264,7 +260,7 @@ public class SnsController{
      return resEnt;
    }
    
-   @RequestMapping(value="/sns/update" ,method = RequestMethod.GET)
+   @GetMapping(value="/sns/update")
    public ModelAndView updateArticle(@RequestParam("articleNO") int articleNO,
            HttpServletRequest request, HttpServletResponse response) throws Exception{
       String viewName = (String)request.getAttribute("viewName");
@@ -275,7 +271,7 @@ public class SnsController{
       return mav;
    }
    
-   @RequestMapping(value= "/notUsed", method = {RequestMethod.GET, RequestMethod.POST})
+   @GetMapping(value= "/notUsed")
    public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String viewName = (String)request.getAttribute("viewName");
     List articlesList = snsService.listArticles();
@@ -285,7 +281,7 @@ public class SnsController{
    }
    
 
-   @RequestMapping(value="/board/removeArticle" ,method =   RequestMethod.POST)
+   @PostMapping(value="/board/removeArticle")
    @ResponseBody
    public ResponseEntity  removeArticle(@RequestParam("articleNO") int articleNO,
                                HttpServletRequest request, HttpServletResponse response) throws Exception{
