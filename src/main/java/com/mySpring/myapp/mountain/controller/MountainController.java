@@ -7,9 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mySpring.myapp.mountain.service.MountainService;
@@ -23,7 +21,7 @@ public class MountainController {
 
    private final MountainService mountainService;
 
-    @RequestMapping(value = "/mountain", method =  RequestMethod.GET)
+    @GetMapping(value = "/mountain")
       private ModelAndView mountain(HttpServletRequest request, HttpServletResponse response) throws Exception {
          String viewName = (String)request.getAttribute("viewName");
          ModelAndView mav = new ModelAndView();
@@ -32,7 +30,7 @@ public class MountainController {
       }
    
     
-      @RequestMapping(value = "/mountain/club", method =  RequestMethod.POST)
+      @PostMapping(value = "/mountain/club")
       private ModelAndView form(@ModelAttribute("mountain") MountainVO mountain, HttpServletRequest request, HttpServletResponse response) throws Exception {
          request.setCharacterEncoding("utf-8");
          mountainService.insertMountain(mountain);
