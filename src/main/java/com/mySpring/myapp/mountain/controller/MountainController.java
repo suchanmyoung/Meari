@@ -22,7 +22,7 @@ public class MountainController {
    private final MountainService mountainService;
 
     @GetMapping(value = "/mountain")
-      private ModelAndView mountain(HttpServletRequest request, HttpServletResponse response) throws Exception {
+      private ModelAndView mountain(HttpServletRequest request) throws Exception {
          String viewName = (String)request.getAttribute("viewName");
          ModelAndView mav = new ModelAndView();
          mav.setViewName(viewName);
@@ -31,7 +31,7 @@ public class MountainController {
    
     
       @PostMapping(value = "/mountain/club")
-      private ModelAndView form(@ModelAttribute("mountain") MountainVO mountain, HttpServletRequest request, HttpServletResponse response) throws Exception {
+      private ModelAndView form(@ModelAttribute("mountain") MountainVO mountain, HttpServletRequest request) throws Exception {
          request.setCharacterEncoding("utf-8");
          mountainService.insertMountain(mountain);
         ModelAndView mav = new ModelAndView("redirect:/main");

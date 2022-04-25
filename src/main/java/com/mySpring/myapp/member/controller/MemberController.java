@@ -15,12 +15,10 @@ import com.mySpring.myapp.member.vo.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mySpring.myapp.member.service.MemberService;
 import com.mySpring.myapp.member.vo.UserProfileVO;
@@ -28,7 +26,7 @@ import com.mySpring.myapp.member.vo.UserProfileVO;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class MemberCotnroller {
+public class MemberController {
 
 	private final MemberService memberService;
 	private static final String ARTICLE_IMAGE_REPO = "C:\\upload\\profile\\article_image";
@@ -46,7 +44,7 @@ public class MemberCotnroller {
 		return "redirect:/login";
 	}
 
-	@GetMapping(value = "login")
+	@GetMapping(value = "/login")
 	public String loginForm(){
 		return "login/login";
 	}
@@ -58,9 +56,8 @@ public class MemberCotnroller {
 		return "/main/main";
 	}
 
-
 	@GetMapping(value = "/profile")
-	private ModelAndView profile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	private ModelAndView profile(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
 		String viewName = (String) request.getAttribute("viewName");
@@ -77,7 +74,7 @@ public class MemberCotnroller {
 	}
 	   
 	      @GetMapping(value = "/profile/update")
-	      private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	      private ModelAndView form(HttpServletRequest request) throws Exception {
 	         String viewName = (String)request.getAttribute("viewName");
 	         System.out.println(viewName);
 	         ModelAndView mav = new ModelAndView();
@@ -89,7 +86,7 @@ public class MemberCotnroller {
 	   
 	   //프로필 업데이트중
 	      @PostMapping(value="/profile/updating")
-	      public ModelAndView  updateUserProfile(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception { {
+	      public ModelAndView  updateUserProfile(MultipartHttpServletRequest multipartRequest) throws Exception { {
 	         multipartRequest.setCharacterEncoding("utf-8");
 	         Map articleMap = new HashMap();
 	          Enumeration enu=multipartRequest.getParameterNames();    
@@ -136,7 +133,7 @@ public class MemberCotnroller {
 	
 
 	@PostMapping(value = "/logout")
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView logout(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		session.removeAttribute("member");
 		session.removeAttribute("isLogOn");
@@ -148,8 +145,7 @@ public class MemberCotnroller {
 	@GetMapping(value = "/*Form")
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,
 							  @RequestParam(value= "action", required=false) String action,
-						       HttpServletRequest request, 
-						       HttpServletResponse response) throws Exception {
+						       HttpServletRequest request) throws Exception {
 		
 		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(viewName);

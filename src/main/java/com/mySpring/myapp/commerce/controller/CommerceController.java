@@ -38,8 +38,7 @@ public class CommerceController {
 
     @GetMapping(value = "/commerce/addHeart")
     @ResponseBody
-    public String addHeart(@RequestParam("articleNO") int articleNO,
-                           HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String addHeart(@RequestParam("articleNO") int articleNO) throws Exception {
 
 
         commerceService.addHeart(articleNO);
@@ -49,7 +48,7 @@ public class CommerceController {
     }
 
     @PostMapping(value = "/commerce/comment")
-    public ModelAndView comment(@ModelAttribute("reply") ReplyVO reply, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView comment(@ModelAttribute("reply") ReplyVO reply, HttpServletRequest request) throws Exception {
         // TODO Auto-generated method stub
         request.setCharacterEncoding("utf-8");
         int result = 0;
@@ -73,7 +72,7 @@ public class CommerceController {
 
 
     @GetMapping(value = "/commerce")
-    public ModelAndView newImageList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView newImageList(HttpServletRequest request) throws Exception {
         //보여줄 viewName가져오기.. /commerce/new
         String viewName = (String) request.getAttribute("viewName");
         System.out.println("Controler-viewNmae : " + viewName);
@@ -92,7 +91,7 @@ public class CommerceController {
     //commerce detail
     @GetMapping(value = "/commerce/detail")
     public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
-                                    HttpServletRequest request, HttpServletResponse response) throws Exception {
+                                    HttpServletRequest request) throws Exception {
 
         String viewName = (String) request.getAttribute("viewName");
 
@@ -111,7 +110,7 @@ public class CommerceController {
     }
 
     @GetMapping(value = "chat/main")
-    private ModelAndView chat_main(HttpServletRequest request, HttpServletResponse response) {
+    private ModelAndView chat_main(HttpServletRequest request) {
         String viewName = (String) request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView();
         mav.setViewName(viewName);
@@ -119,7 +118,7 @@ public class CommerceController {
     }
 
     @GetMapping(value = "chat/room")
-    private ModelAndView chat_room(HttpServletRequest request, HttpServletResponse response) {
+    private ModelAndView chat_room(HttpServletRequest request) {
         String viewName = (String) request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView();
         mav.setViewName(viewName);
@@ -127,7 +126,7 @@ public class CommerceController {
     }
 
     @GetMapping(value = "commerce/write")
-    private ModelAndView commerce_write(HttpServletRequest request, HttpServletResponse response) {
+    private ModelAndView commerce_write(HttpServletRequest request) {
         String viewName = (String) request.getAttribute("viewName");
         ModelAndView mav = new ModelAndView();
         mav.setViewName(viewName);
@@ -138,7 +137,7 @@ public class CommerceController {
     //Multiple Image Upload
     @PostMapping(value = "/commercePost")
     @ResponseBody
-    public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+    public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest) throws Exception {
 
         System.out.println("commercePost 실행");
         multipartRequest.setCharacterEncoding("utf-8");
@@ -338,8 +337,7 @@ public class CommerceController {
     /* modArticle  */
     @PostMapping(value = "/commerce/updating")
     @ResponseBody
-    public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest,
-                                     HttpServletResponse response) throws Exception {
+    public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest) throws Exception {
         multipartRequest.setCharacterEncoding("utf-8");
         Map<String, Object> articleMap = new HashMap<String, Object>();
         Enumeration enu = multipartRequest.getParameterNames();
@@ -371,7 +369,7 @@ public class CommerceController {
 
     @GetMapping(value = "/commerce/update")
     public ModelAndView updateArticle(@RequestParam("articleNO") int articleNO,
-                                      HttpServletRequest request, HttpServletResponse response) throws Exception {
+                                      HttpServletRequest request) throws Exception {
         String viewName = (String) request.getAttribute("viewName");
         Map articleMap = commerceService.viewArticle(articleNO);
         ModelAndView mav = new ModelAndView();
@@ -381,7 +379,7 @@ public class CommerceController {
     }
 
     @GetMapping(value = "/profile/commerce")
-    private ModelAndView profile_commerce(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    private ModelAndView profile_commerce(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         Member member = (Member) session.getAttribute("member");
         String viewName = (String) request.getAttribute("viewName");

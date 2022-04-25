@@ -28,7 +28,7 @@ public class HomeController {
 	}
 
 	@GetMapping(value = "map")
-	private ModelAndView map(HttpServletRequest request, HttpServletResponse response) {
+	private ModelAndView map(HttpServletRequest request) {
 
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -39,8 +39,7 @@ public class HomeController {
 	@GetMapping(value = "/chat/test")
 	private ModelAndView chat(@RequestParam(value = "username", required = false) String username,
 							  @RequestParam(value = "roomNum", required = false) String roomNum,
-							  HttpServletRequest request,
-							  HttpServletResponse response) throws Exception {
+							  HttpServletRequest request) throws Exception {
 
 		String viewName = (String) request.getAttribute("viewName");
 		System.out.println(viewName);

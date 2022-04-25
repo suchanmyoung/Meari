@@ -84,7 +84,7 @@ public class SnsController{
    @GetMapping(value="/sns/addHeart")
    @ResponseBody
    public String addHeart(@RequestParam("articleNO") int articleNO,  
-		   HttpServletRequest request, HttpServletResponse response) throws Exception{
+		   HttpServletRequest request) throws Exception{
 	   HttpSession session = request.getSession();
 	   Member member = (Member)session.getAttribute("member");
 	   String id = member.getId();
@@ -116,7 +116,7 @@ public class SnsController{
 
    //go to sns/write tiles
    @GetMapping(value = "/sns/write")
-   private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
+   private ModelAndView form(HttpServletRequest request) throws Exception {
       String viewName = (String)request.getAttribute("viewName");
       System.out.println(viewName);
       ModelAndView mav = new ModelAndView();
@@ -127,7 +127,7 @@ public class SnsController{
    //Multiple Image
    @PostMapping(value="/sns/writing")
    @ResponseBody
-   public ResponseEntity  addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+   public ResponseEntity  addNewArticle(MultipartHttpServletRequest multipartRequest) throws Exception {
     multipartRequest.setCharacterEncoding("utf-8");
     String sns_imageFileName=null;
     
@@ -272,7 +272,7 @@ public class SnsController{
    }
    
    @GetMapping(value= "/notUsed")
-   public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
+   public ModelAndView listArticles(HttpServletRequest request) throws Exception {
     String viewName = (String)request.getAttribute("viewName");
     List articlesList = snsService.listArticles();
     ModelAndView mav = new ModelAndView(viewName);
@@ -310,9 +310,4 @@ public class SnsController{
     }
     return resEnt;
    }
-
-   public String comment(Member member, HttpServletRequest request, HttpServletResponse response) throws Exception {
-	// TODO Auto-generated method stub
-	return null;
-}
 }
