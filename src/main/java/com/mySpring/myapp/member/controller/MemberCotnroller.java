@@ -39,32 +39,35 @@ public class MemberCotnroller {
 		return "signup/signup";
 	}
 
-	@PostMapping(value="/signupForm")
-	public String signUp(Member member, Model model){
+	@PostMapping(value="/signup")
+	public String signUp(Member member){
 		memberService.join(member);
-		log.info("회원가입이 완료 되었습니다." + member.toString());
-		return "redirect:/loginForm";
+		log.info("회원가입이 완료 되었습니다." + member.getName());
+		return "redirect:/login";
+	}
+
+	@GetMapping(value = "login")
+	public String loginForm(){
+		return "login/login";
 	}
 
 
-
-
 	@GetMapping(value = "/profile")
-	   private ModelAndView profile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	      HttpSession session = request.getSession();
-	      Member member = (Member)session.getAttribute("member");
-	      String viewName = (String)request.getAttribute("viewName");
-	      String member_id = member.getId();
-	      
-	      Map articleMap = new HashMap();
-	      List<UserProfileVO> userProfile = memberService.userProfile(member_id);
-	      
-	      List newImageList = memberService.newImageList(member_id);      
-	      ModelAndView mav = new ModelAndView(viewName);
-	        mav.addObject("newImageList", newImageList);
-	        mav.addObject("userProfile", userProfile);
-	        return mav;
-	         }
+	private ModelAndView profile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String viewName = (String) request.getAttribute("viewName");
+		String member_id = member.getId();
+
+		Map articleMap = new HashMap();
+		List<UserProfileVO> userProfile = memberService.userProfile(member_id);
+
+		List newImageList = memberService.newImageList(member_id);
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("newImageList", newImageList);
+		mav.addObject("userProfile", userProfile);
+		return mav;
+	}
 	   
 	      @GetMapping(value = "/profile/update")
 	      private ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -145,7 +148,6 @@ public class MemberCotnroller {
 	    HttpSession session = request.getSession();
 	    session.setAttribute("member", member);
 	    session.setAttribute("isLogOn", true);
-	    //mav.setViewName("redirect:/member/listMembers.do");
 	    String action = (String)session.getAttribute("action");
 	    session.removeAttribute("action");
 	    if(action!= null) {

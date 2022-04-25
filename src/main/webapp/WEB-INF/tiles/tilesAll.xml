@@ -72,28 +72,15 @@
       <put-attribute name="body" value="/WEB-INF/views/commerce/commerce_write.jsp" />
    </definition>
 
-   <definition name="/loginForm" extends="subLayout">
-      <put-attribute name="title" value="로그인창" />
-      <put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />
-   </definition>
-
    <definition name="/profile" extends="baseLayout">
       <put-attribute name="title" value="프로필창" />
       <put-attribute name="body" value="/WEB-INF/views/profile/profile.jsp" />
-   </definition>
-
-   <definition name="/signupForm" extends="subLayout">
-      <put-attribute name="title" value="프로필창" />
-      <put-attribute name="body" value="/WEB-INF/views/signup/signup.jsp" />
    </definition>
 
    <definition name="/sns/feed" extends="baseLayout">
       <put-attribute name="title" value="SNS피드창" />
       <put-attribute name="body" value="/WEB-INF/views/sns/sns_feed.jsp" />
    </definition>
-
-
-
 
    <definition name="/sns/new" extends="baseLayout">
       <put-attribute name="title" value="SNS새글창" />

@@ -16,7 +16,7 @@
 
 <body>
 
-   <form action="/signupForm" method="post">
+   <form action="/signup" method="post">
       
         <div class="backgroundImageContainer">
            <img class="backgroundImage" src="resources/images/commerce/commerce_img/backgroundImage.jpeg">
@@ -29,25 +29,25 @@
                 </div>
                 <div class="register_id">
                     <h4>아이디</h4>
-                    <input type="text" name="member_id" id="" placeholder="아이디 입력">
+                    <input type="text" name="id" placeholder="아이디 입력">
                 </div>
                 <div class="register_email">
                     <h4>이메일</h4>
-                    <input type="text" name="member_email" id="" placeholder="이메일 입력">
+                    <input type="text" name="email" placeholder="이메일 입력">
                 </div>
                 <div class="register_pw">
                     <h4>비밀번호</h4>
-                    <input type="password" name="member_pw" id="" placeholder="비밀번호 입력">
+                    <input type="password" name="password" placeholder="비밀번호 입력">
                 </div>
 
-                <div class="register_pw_confirm">
-                    <h4>비밀번호 확인</h4>
-                    <input type="password" name="member_pw_corr" id="" placeholder="비밀번호 재입력">
-                </div>
+<%--                <div class="register_pw_confirm">--%>
+<%--                    <h4>비밀번호 확인</h4>--%>
+<%--                    <input type="password" name="member_pw_corr" placeholder="비밀번호 재입력">--%>
+<%--                </div>--%>
 
                 <div class="register_name">
                     <h4>이름</h4>
-                    <input type="text" name="member_name" id="" placeholder="이름 입력">
+                    <input type="text" name="name" placeholder="이름 입력">
                 </div>
 
                 <div class="submit">

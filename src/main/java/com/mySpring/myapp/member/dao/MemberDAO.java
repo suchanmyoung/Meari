@@ -26,7 +26,6 @@ public class MemberDAO {
     public void joinMember(Member member) throws DataAccessException {
         try {
             em.persist(member);
-
         } catch (Exception e) {
             em.close();
         }

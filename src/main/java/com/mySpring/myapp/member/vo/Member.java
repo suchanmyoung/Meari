@@ -29,11 +29,8 @@ public class Member {
 	@Column(name = "REGDATE")
 	private Timestamp regDate;
 
-	public Member(Member member) {
-		this.id = member.getId();
-		this.password = member.getPassword();
-		this.name = member.getName();
-		this.email = member.getEmail();
-		this.regDate = member.getRegDate();
+
+	public Member() {
+
 	}
 }
