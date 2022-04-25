@@ -51,6 +51,13 @@ public class MemberCotnroller {
 		return "login/login";
 	}
 
+	@PostMapping(value = "/login")
+	public String login(Member member){
+		Member loginMember = memberService.login(member);
+		log.info("로그인 성공 = {}", loginMember.getName());
+		return "/main/main";
+	}
+
 
 	@GetMapping(value = "/profile")
 	private ModelAndView profile(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -137,32 +144,6 @@ public class MemberCotnroller {
 		mav.setViewName("redirect:/loginForm");
 		return mav;
 	}
-
-	@PostMapping(value = "/loginForm")
-	public ModelAndView login(@ModelAttribute("member") Member member,
-				              RedirectAttributes rAttr,
-		                       HttpServletRequest request, HttpServletResponse response) throws Exception {
-	ModelAndView mav = new ModelAndView();
-	member = memberService.login(member);
-	if(member != null) {
-	    HttpSession session = request.getSession();
-	    session.setAttribute("member", member);
-	    session.setAttribute("isLogOn", true);
-	    String action = (String)session.getAttribute("action");
-	    session.removeAttribute("action");
-	    if(action!= null) {
-	       mav.setViewName("redirect:"+action);
-	    }else {
-	       mav.setViewName("redirect:/main?result=success");	
-	    }
-
-	}else {
-	   rAttr.addAttribute("result","loginFailed");
-	   mav.setViewName("redirect:/loginForm");
-	}
-	return mav;
-	}
-
 
 	@GetMapping(value = "/*Form")
 	private ModelAndView form(@RequestParam(value= "result", required=false) String result,

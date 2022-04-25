@@ -23,12 +23,13 @@ public class MemberDAO {
     @PersistenceContext
     EntityManager em;
 
-    public void joinMember(Member member) throws DataAccessException {
-        try {
+    public void joinMember(Member member){
             em.persist(member);
-        } catch (Exception e) {
-            em.close();
-        }
+    }
+
+
+    public Member loginById(Member member){
+        return em.find(Member.class, member.getId());
     }
 
     public int userProfileUpdate(Map articleMap) throws DataAccessException {
@@ -39,11 +40,6 @@ public class MemberDAO {
     public List userProfile(String member_id) throws DataAccessException {
         List<UserProfileVO> userProfile = sqlSession.selectList("mapper.member.userProfile", member_id);
         return userProfile;
-    }
-
-    public Member loginById(Member member) throws DataAccessException {
-        Member vo = sqlSession.selectOne("mapper.member.loginById", member);
-        return vo;
     }
 
     public List newImageList(String member_id) throws DataAccessException {

@@ -18,7 +18,7 @@ import com.mySpring.myapp.sns.vo.ImageVO;
 
 @RequiredArgsConstructor
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional
 public class MemberService {
 
     private final MemberDAO memberDAO;
@@ -26,6 +26,10 @@ public class MemberService {
 	public void join(Member member){
 		memberDAO.joinMember(member);
 	}
+
+    public Member login(Member member){
+        return memberDAO.loginById(member);
+    }
 
 
 
@@ -37,10 +41,6 @@ public class MemberService {
     public List<UserProfileVO> userProfile(String member_id) throws Exception {
         List<UserProfileVO> userProfile = memberDAO.userProfile(member_id);
         return userProfile;
-    }
-
-    public Member login(Member member) throws Exception {
-        return memberDAO.loginById(member);
     }
 
     public List<ImageVO> newImageList(String member_id) throws Exception {

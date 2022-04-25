@@ -21,7 +21,7 @@
     
 </head>
 <body>
-   <form action="/loginForm" class="form-signin" method="post">
+   <form action="/login" class="form-signin" method="post">
     <div class="backgroundImageContainer">
         <img class="backgroundImage" src="resources/images/commerce/commerce_img/backgroundImage.jpeg">
     </div>
@@ -44,10 +44,10 @@
                 </div>
                 <p class = "loginMessege regular">들려주세요. 당신의 메아리</p> 
                 <div class="login_id">
-                    <input type="text" name="member_id" id=""  placeholder="아이디를 입력하세요.">
+                    <input type="text" name="id" placeholder="아이디를 입력하세요.">
                 </div>
                 <div class="login_pw">
-                    <input type="password" name="member_pw" id="" placeholder="비밀번호를 입력하세요.">
+                    <input type="password" name="password" id="" placeholder="비밀번호를 입력하세요.">
                 </div>
                 <div class="submit">
                     <input type="submit" value="로그인">
