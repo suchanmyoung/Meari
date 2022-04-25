@@ -23,15 +23,10 @@ public class MemberDAO {
     @PersistenceContext
     EntityManager em;
 
-    @PersistenceUnit
-    EntityManagerFactory emf;
-
-    EntityTransaction tx = em.getTransaction();
-
     public void joinMember(Member member) throws DataAccessException {
         try {
             em.persist(member);
-            tx.commit();
+
         } catch (Exception e) {
             em.close();
         }
