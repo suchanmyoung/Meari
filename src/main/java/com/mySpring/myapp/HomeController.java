@@ -22,10 +22,9 @@ public class HomeController {
 	private final UserMapper userMapper;
 
 	@GetMapping(value = "/")
-	private String main(@RequestParam(value = "result", required = false) String result, Model model) throws Exception {
-		userMapper.save("testzzz", "testggg");
+	private String main(@RequestParam(value = "result", required = false) String result, Model model, HttpServletRequest request) throws Exception {
 		model.addAttribute("result", result);
-		return "main/main";
+		return "/";
 	}
 
 	@GetMapping(value = "map")
