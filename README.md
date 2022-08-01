@@ -37,10 +37,10 @@
 #### 개인적인 메아리 프로젝트 리팩토링 & 차세대
 
 ### To-Be
-- [ ] JDK 11
-- [ ] SpringBoot
-- [ ] JPA
-- [ ] MariaDB(RDS)
+- [x] JDK 11
+- [x] SpringBoot
+- [x] JPA
+- [x] MariaDB(RDS)
 - [ ] Vue.js(undefined)
-- [ ] Lombok
-- [ ] Refactoring
+- [x] Lombok
+- [ ] Refactoring(ing)
